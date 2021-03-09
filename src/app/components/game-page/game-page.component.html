@@ -1,0 +1,144 @@
+<div>
+
+	<div>
+		<div class="header_box">
+			<app-logo></app-logo>
+			<button (click)="newGame()" class="new_game__button add">New game</button>
+		</div>
+	</div>
+
+
+	<div class="darts_box">
+
+		<div class="darts_box__main col-w">
+
+			<div class="first_field">
+				<p>Dart 1</p>
+				<p>Dart 2</p>
+				<p>Dart 3</p>
+			</div>
+
+
+
+			<div class="main_box__first-player flex-r">
+
+
+				<!-- <div class="second-field"> -->
+
+
+
+				<!-- Start -->
+				<!-- <div *ngFor="let user of userService.usersGameArray " class="main_box__first-player flex-r"> -->
+				<div class="main_box__first-player flex-r">
+
+
+
+
+					<!-- <p>{{user[0]?.name}}</p> -->
+
+
+					<!-- 1 user -->
+					<div>
+						<!-- 1 user-field -->
+						<input (input)="addPoint_1($event)" #point1 type="number">
+						<button (click)="active_x1()" class="_1">1x</button>
+						<button (click)="active_x2()" class="_2">2x</button>
+						<button (click)="active_x3()" class="_3">3x</button>
+					</div>
+
+					<!-- 2 user -->
+					<div>
+						<!--  user-field -->
+						<input (input)="addPoint_2($event)" type="number">
+						<button (click)="active_x1()" class="_1">1x</button>
+						<button (click)="active_x2()" class="_2">2x</button>
+						<button (click)="active_x3()" class="_3">3x</button>
+					</div>
+
+
+					<!-- 3 user -->
+					<div>
+						<!-- 3 user-field -->
+						<input (input)="addPoint_3($event)" type="number">
+						<button (click)="active_x1()" class="_1">1x</button>
+						<button (click)="active_x2()" class="_2">2x</button>
+						<button (click)="active_x3()" class="_3">3x</button>
+					</div>
+
+
+
+					<!-- </div> -->
+				</div>
+
+
+
+
+
+				<!-- </div> -->
+			</div>
+
+
+
+
+
+		</div>
+
+		<div class="darts_box__button">
+			<button (click)="addStep()" class="add">Add</button>
+		</div>
+	</div>
+
+	<div class="table_box col-w" id="table_box">
+
+
+		<div style="display: flex;
+		justify-content: space-between;
+		text-align: center;">
+
+
+			<!-- <div *ngFor="let user of userService.pointsArray"> -->
+			<!-- <div class="table__name_users" style="display: flex; justify-content: center;">
+					<p>{{user?.name}}</p>
+				</div>
+
+
+				<div style="display: flex;
+			justify-content: space-between;">
+					<p>{{countStep + 1}}</p>
+					<div class="table_line" style="width: 100%;">
+
+						<div class="col-g">{{user?.points}}</div>
+
+
+					</div>
+					<p>info</p>
+
+				</div> -->
+
+			<div *ngFor="let user of userService.pointsArray">
+
+				<div style="width: 200px; padding: 10px; background-color: aliceblue; color: black;">
+					<p>{{user?.name}}</p>
+				</div>
+
+			</div>
+
+
+
+
+
+
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+	</div>

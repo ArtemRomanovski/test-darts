@@ -1,0 +1,119 @@
+.header_box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5rem 0;
+	border-bottom: 1px solid #5ec3f4;
+
+	.new_game__button{
+		width: 150px;
+	}
+}
+
+.darts_box {
+	
+	.first_field {
+
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+		justify-content: space-around;
+	}
+	
+	.darts_box__main {
+		
+		padding: 5rem 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		
+		input {
+			width: 8rem;
+			height: 40px;
+			margin: .2rem;
+			margin-right: 0;
+		
+			border: none;
+			border-radius: 3px;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		
+			background-color: #ffffff;
+		}
+
+		button {
+			width: 3rem;
+			height: 3rem;
+			border: .2rem solid #4d5061
+		}
+		
+		button._2 {
+			width: 2.8rem;
+			border-left: .1rem;
+			border-right: .1rem;
+		}
+
+		button._3 {
+			border-top-right-radius: 18px;
+			border-bottom-right-radius: 18px;
+		}
+
+		// .main_box__first-player {
+		// }
+		// .main_box__second-player {
+		// 	margin: 0 12rem;
+		// }
+		// .main_box__third-player {
+		// }
+	}
+
+
+	.darts_box__button {
+		display: flex;
+		justify-content: center;
+		padding-bottom: 5rem;
+		border-bottom: 1px solid #5ec3f4;
+
+		button {
+			width: 400px;
+		}
+	}
+}
+
+.table_box {
+
+	.table__name_users {
+
+	}
+
+	.table_line {
+
+		display: flex;
+		justify-content: space-between;
+
+		background-color: #ffffff;
+
+
+		.table_line__step {
+			text-align: center;
+			margin-right: 20px;
+		}
+
+		.table_line__points {
+			display: flex;
+			justify-content: space-between;
+
+			padding: 15px 80px;
+			
+		}
+
+		.table_line__info {
+			text-align: center;
+			margin-left: 20px;
+		}
+
+	}
+
+}
+
+

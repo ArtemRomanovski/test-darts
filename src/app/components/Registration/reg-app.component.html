@@ -1,0 +1,66 @@
+<div *ngIf="toggle;" class="reg-app__container col-w">
+	<app-logo></app-logo>
+	<p style="margin-bottom: 3rem; font-size: 16px;">Add a new player to start the game</p>
+	<div class="form_field">
+		<div>
+			<div class="form_field__nick-name">
+				<label for="">Nickname</label>
+				<input class="field" type="text" [(ngModel)]="name" required maxlength="20">
+			</div>
+			<div class="form_field__e-mail">
+				<label for="">e-mail</label>
+				<input class="field" type="email" [(ngModel)]="email">
+			</div>
+			<div>
+				<button (click)=" addUser(); toggleCards()" type="submit" class="form_field__button add">Add</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="!toggle && !toggleGamePage">
+	<div class="container_2-page">
+		<div class="logo_box">
+			<app-logo class="logo"></app-logo>
+		</div>
+		<div class="main_box">
+			<div class="choice-page">
+				<!-- Search field -->
+				<div class="search_box">
+					<p class="col-w">Select players</p>
+
+					<form action="" class="search_form">
+
+						<input class="search_field field" type="text" placeholder="Search">
+
+						<button (click)="toggleCards()" class="add_new-player add">New player</button>
+
+					</form>
+				</div>
+				<ul>
+					<li *ngFor="let user of userService.usersArray; let i = index;" (click)="playerChoice(i); "
+						class="user_box field">
+						<div class="name_field">
+							{{user?.name}}
+						</div>
+						<div class="email_field">
+							{{user?.email}}
+						</div>
+						<div (click)="remove(user?.name)" class="delete_user">x</div>
+					</li>
+				</ul>
+				<!-- <div class="button_box__game_button"> -->
+			</div>
+			<div>
+				<button class="choose_game__buttom">501</button>
+				<button class="choose_game__buttom">301</button>
+			</div>
+			<div>
+				<button (click)="checkStart(); togglePage()" class="add game_button">Start</button>
+			</div>
+		</div>
+		<div class="empty_box"></div>
+	</div>
+</div>
+
+<app-game-page class="container_2-page" *ngIf="!toggle && toggleGamePage"></app-game-page>

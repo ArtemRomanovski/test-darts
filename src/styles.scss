@@ -1,1 +1,100 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html{
+	font-family: 'Roboto', sans-serif;
+	line-height: 1.4;
+	font-size: 14px;
+	background-color: #039be5;
+	color: #4d5061;
+
+
+}
+
+a, ul, li {
+	text-decoration: none;
+}
+
+li {
+
+}
+
+// .container {
+// 	padding: 0;
+// }
+
+// .btn {
+// 	display: inline-block;
+// 	border: none;
+// 	background: #555;
+// 	color: #fff;
+// 	padding: 7px 20px;
+// 	cursor: pointer;
+// }
+
+// .button:hover {
+// 	background: #666;
+// }
+
+
+.add {
+
+	width: 100%;
+	height: 40px;
+
+	border: none;
+	border-radius: 3px;
+	background-color: #ffd726;
+	color: #4d5061;
+
+
+	cursor: pointer;
+}
+
+.field {
+
+	width: 100%;
+	height: 40px;
+
+	border: none;
+	border-radius: 3px;
+
+	background-color: #ffffff;
+
+	// color: #4d5061;
+
+}
+
+button {
+	cursor: pointer;
+}
+
+.col-w {
+	color: #ffffff;
+}
+
+.col-g {
+	color: #4d5061;
+}
+
+input {
+	padding: .5rem;
+}
+
+.flex-r {
+	display: flex;
+	flex-flow: wrap row;
+	justify-content: space-between;
+}
+.flex-c {
+	display: flex;
+	flex-flow: row column;
+	justify-content: space-between;
+}
