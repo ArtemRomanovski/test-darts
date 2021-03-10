@@ -41,6 +41,12 @@ export class GamePageComponent implements OnInit {
 		]
 	]
 
+	// starting info title
+	public titleStartInfo: string;
+
+	// info title Step
+	public titleStepInfo: string;
+
 
 	constructor(
 		public userService: UsersService,
@@ -68,6 +74,10 @@ export class GamePageComponent implements OnInit {
 		// filling the starting field of the table with values
 		this.userService.choiceUsersToGame.forEach(i => this.userService.usersGameArray.push({ name: i.name, points: 501 }));
 		this.userService.choiceUsersToGame.forEach(i => this.userService.usersGameArrayCopy.push({ name: i.name, points: 501 }));
+
+		this.titleStartInfo = 
+		`${this.userService.usersGameArrayCopy[0].name}: ${this.userService.usersGameArrayCopy[0].points} point(s)\n${this.userService.usersGameArrayCopy[1].name}: ${this.userService.usersGameArrayCopy[1].points} point(s)\n${this.userService.usersGameArrayCopy[2].name}: ${this.userService.usersGameArrayCopy[2].points} point(s)`
+
 	}
 
 	// Multiplication + add in array
@@ -247,7 +257,8 @@ export class GamePageComponent implements OnInit {
 
 		console.log(`Текущие очки игроков`, this.userService.usersGameArray)
 
-		console.log(`Текущие очки попаданий\n`, `Gamer 1: ${(this.userService.currantTotalPointsArray[0].totalPoint)} (${this.currantPointsArray[0][0].dart}+${this.currantPointsArray[0][1].dart}+${this.currantPointsArray[0][2].dart})\n`, `Gamer 2: ${(this.userService.currantTotalPointsArray[1].totalPoint)} (${this.currantPointsArray[1][0].dart}+${this.currantPointsArray[1][1].dart}+${this.currantPointsArray[1][2].dart})\n`, `Gamer 3: ${(this.userService.currantTotalPointsArray[2].totalPoint)} (${this.currantPointsArray[2][0].dart}+${this.currantPointsArray[2][1].dart}+${this.currantPointsArray[2][2].dart})`)
+		// title info
+		this.titleStepInfo = `Текущие очки попаданий:\n${this.userService.usersGameArray[0].name}: ${(this.userService.currantTotalPointsArray[0].totalPoint)} (${this.currantPointsArray[0][0].dart}+${this.currantPointsArray[0][1].dart}+${this.currantPointsArray[0][2].dart})\n${this.userService.usersGameArray[1].name}: ${(this.userService.currantTotalPointsArray[1].totalPoint)} (${this.currantPointsArray[1][0].dart}+${this.currantPointsArray[1][1].dart}+${this.currantPointsArray[1][2].dart})\n${this.userService.usersGameArray[2].name}: ${(this.userService.currantTotalPointsArray[2].totalPoint)} (${this.currantPointsArray[2][0].dart}+${this.currantPointsArray[2][1].dart}+${this.currantPointsArray[2][2].dart})`
 
 		console.log(`Текущие очки попаданий`, this.userService.currantTotalPointsArray)
 

@@ -178,9 +178,14 @@
 	font-size: 39px;
 
 	&:hover {
-		background-color: #37bf97;
-	}
+		background-color: #ddeeff;
+		transition: background 300ms ease-in 0ms;
+		box-shadow: inset -5px 0 5px -5px #ffffff;
 
+	}
+	&:active {
+		background-color: #ddeeff;
+	}
 }
 .game_button__box {
 
@@ -193,9 +198,11 @@
 
 	}
 
-	.game_button:focus {
+	.game_button:focus, .game_button:hover {
 		bottom: 5rem;
 		background-color: #44f1bd;
 		color: #72a493;
+		transition: background 300ms ease-in 0ms;
+		box-shadow: inset -5px 0 5px -5px #37bf97;
 	}
 }

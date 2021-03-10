@@ -81,7 +81,7 @@ export class RegAppComponent implements OnInit {
 		console.log(i)
 		if (this.userService.choiceUsersToGame.length < 3) {
 			this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
-
+		
 		}
 		else {
 			this.userService.choiceUsersToGame.shift();
