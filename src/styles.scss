@@ -22,28 +22,6 @@ a, ul, li {
 	text-decoration: none;
 }
 
-li {
-
-}
-
-// .container {
-// 	padding: 0;
-// }
-
-// .btn {
-// 	display: inline-block;
-// 	border: none;
-// 	background: #555;
-// 	color: #fff;
-// 	padding: 7px 20px;
-// 	cursor: pointer;
-// }
-
-// .button:hover {
-// 	background: #666;
-// }
-
-
 .add {
 
 	width: 100%;
@@ -54,8 +32,13 @@ li {
 	background-color: #ffd726;
 	color: #4d5061;
 
-
 	cursor: pointer;
+}
+
+.add:hover {
+	transition: background 200ms ease-in 0ms;
+	// box-shadow: inset -5px 0 5px -5px #00ffff;
+	background-color: #fff832;
 }
 
 .field {
@@ -67,8 +50,6 @@ li {
 	border-radius: 3px;
 
 	background-color: #ffffff;
-
-	// color: #4d5061;
 
 }
 

@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 5rem 0;
+	padding-top: 2rem;
 	border-bottom: 1px solid #5ec3f4;
 
 	.new_game__button{
@@ -11,8 +11,14 @@
 }
 
 .darts_box {
+
+	.darts_box__main_box {
+		display: flex;
+	}
 	
 	.first_field {
+
+		height: 140px;
 
 		display: flex;
 		flex-flow: column;
@@ -21,14 +27,16 @@
 	}
 	
 	.darts_box__main {
-		
-		padding: 5rem 0;
+
 		display: flex;
+		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
+
+		padding: 0 0 5rem;
 		
 		input {
-			width: 8rem;
+			width: 6rem;
 			height: 40px;
 			margin: .2rem;
 			margin-right: 0;
@@ -57,17 +65,34 @@
 			border-top-right-radius: 18px;
 			border-bottom-right-radius: 18px;
 		}
-
-		// .main_box__first-player {
-		// }
-		// .main_box__second-player {
-		// 	margin: 0 12rem;
-		// }
-		// .main_box__third-player {
-		// }
 	}
 
+	.main_box__players_box {
 
+		width: 820px;
+
+		display: flex;
+		flex-flow: inherit;
+
+		button:focus, button:active {
+			background-color: #4d5061;
+			color: #ffffff;
+		}
+
+		.players_box__1-player {
+			display: flex;
+			justify-content: flex-end;
+		}
+		.players_box__2-player {
+			display: flex;
+			justify-content: flex-end;
+		}
+		.players_box__3-player {
+			display: flex;
+			justify-content: flex-end;
+		}
+	}
+	
 	.darts_box__button {
 		display: flex;
 		justify-content: center;
@@ -80,40 +105,71 @@
 	}
 }
 
+.usersName_box {
+	width: 820px;
+    display: flex;
+    justify-content: space-between;
+    padding: 35px 0px 10px 50px;
+
+	.usersName_box__userName {
+		display: flex;
+		justify-content: center;
+		width: 33%;
+	}
+}
+
 .table_box {
 
-	.table__name_users {
+	max-width: 900px;
 
-	}
-
+	display: flex;
+    flex-flow: column-reverse;
+    justify-content: left;
+    align-items: flex-end;
+	
 	.table_line {
+		display: flex;
+		justify-content: right;
 
+		.table_line__step_box {
+
+			padding: 15px;
+
+			display: flex;
+			justify-content: right;
+			align-items: center;
+		}
+
+		.table_line__points_box {
+
+		width: 780px;
 		display: flex;
 		justify-content: space-between;
-
+		margin-bottom: 2px;
+		padding: 15px 0px;
 		background-color: #ffffff;
 
-
-		.table_line__step {
-			text-align: center;
-			margin-right: 20px;
+			p {
+				display: flex;
+				justify-content: center;
+				width: 33%;
+			}
 		}
 
-		.table_line__points {
+		.table_line__info_box {
+
+			width: 40px;
+
 			display: flex;
-			justify-content: space-between;
-
-			padding: 15px 80px;
-			
+			justify-content: center;
+			align-items: center;
 		}
-
-		.table_line__info {
-			text-align: center;
-			margin-left: 20px;
-		}
-
 	}
-
 }
+
+
+
+
+
 
 

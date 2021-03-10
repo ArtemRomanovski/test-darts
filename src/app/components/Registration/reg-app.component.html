@@ -5,7 +5,7 @@
 		<div>
 			<div class="form_field__nick-name">
 				<label for="">Nickname</label>
-				<input class="field" type="text" [(ngModel)]="name" required maxlength="20">
+				<input class="field" type="text" [(ngModel)]="name" required maxlength="20" autofocus>
 			</div>
 			<div class="form_field__e-mail">
 				<label for="">e-mail</label>
@@ -38,7 +38,7 @@
 					</form>
 				</div>
 				<ul>
-					<li *ngFor="let user of userService.usersArray; let i = index;" (click)="playerChoice(i); "
+					<li *ngFor="let user of userService.usersArray; let i = index;" (click)="playerChoice(i);"
 						class="user_box field">
 						<div class="name_field">
 							{{user?.name}}
@@ -49,14 +49,13 @@
 						<div (click)="remove(user?.name)" class="delete_user">x</div>
 					</li>
 				</ul>
-				<!-- <div class="button_box__game_button"> -->
 			</div>
 			<div>
-				<button class="choose_game__buttom">501</button>
-				<button class="choose_game__buttom">301</button>
+				<button (click)="Game_501()" class="choose_game__buttom">501</button>
+				<button (click)="Game_301()"class="choose_game__buttom">301</button>
 			</div>
-			<div>
-				<button (click)="checkStart(); togglePage()" class="add game_button">Start</button>
+			<div class="game_button__box">
+				<button (click)="checkStart()" class="add game_button">Start</button>
 			</div>
 		</div>
 		<div class="empty_box"></div>

@@ -8,18 +8,29 @@ import { UserCard } from "../models/user";
 export class UsersService {
 
 	@Input() UserCard;
+	@Input() PointCard;
 
-	public pointsArray = []
-	public usersGameArray = [];
+	// Текущие очки игроков
+	public usersGameArray = []
+	public usersGameArrayCopy = []
+	
+	// Полученнные очки
+	public currantTotalPointsArray = []
+
+	// выбранные игроки 
+	public choiceUsersToGame = [];
+
+
+
 	public usersArray: UserCard[] = [
 		{
 			name: "Jack",
 			email: "Jack@gmail.com"
 		},
-		// {
-		// 	name: "John",
-		// 	email: "John@gmail.com"
-		// },
+		{
+			name: "John",
+			email: "John@gmail.com"
+		},
 		{
 			name: "Timmy",
 			email: "Timmy@gmail.com"
@@ -28,10 +39,10 @@ export class UsersService {
 			name: "Alice",
 			email: "Alice@gmail.com"
 		},
-		// {
-		// 	name: "Brad",
-		// 	email: "Brad@gmail.com"
-		// }
+		{
+			name: "Brad",
+			email: "Brad@gmail.com"
+		}
 
 	]
 

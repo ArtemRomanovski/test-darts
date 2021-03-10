@@ -30,6 +30,9 @@ export class RegAppComponent implements OnInit {
 	public toggleGamePage: boolean = false;
 	public disabled: string = "";
 
+	public choice_501: boolean = false;
+	public choice_301: boolean = false;
+
 
 
 	constructor(public userService: UsersService) {
@@ -76,20 +79,32 @@ export class RegAppComponent implements OnInit {
 
 	public playerChoice(i: number) {
 		console.log(i)
-		if (this.userService.usersGameArray.length < 3) {
-			this.userService.usersGameArray.push(this.userService.usersArray[i]);
+		if (this.userService.choiceUsersToGame.length < 3) {
+			this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
 
 		}
 		else {
-			this.userService.usersGameArray.shift();
-			this.userService.usersGameArray.push(this.userService.usersArray[i])
+			this.userService.choiceUsersToGame.shift();
+			this.userService.choiceUsersToGame.push(this.userService.usersArray[i])
 		}
 	}
 
+	public Game_501() {
+		this.choice_501 = true;
+		this.choice_301 = false;
+	}
+
+	public Game_301() {
+		this.choice_501 = false;
+		this.choice_301 = true;
+	}
+
 	public checkStart() {
-		if (this.userService.usersGameArray.length === 3) {
-			this.disabled = "game"
+		if ((this.userService.choiceUsersToGame.length === 3) && (this.choice_501 === true)) {
+			this.togglePage();
 		}
+		console.log(this.userService.choiceUsersToGame, this.choice_501 === true);
+
 	}
 
 

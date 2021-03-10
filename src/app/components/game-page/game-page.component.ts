@@ -19,133 +19,315 @@ export interface pointArray {
 })
 export class GamePageComponent implements OnInit {
 
+	// Count Step
 	public countStep: number = 1;
 
-	public countUser = [];
-
-	public pointArray = []
-
-	public arr = []
-
-	public point_1: number;
-	public point_2: number;
-	public point_3: number;
-
-	public valueX1: boolean = false;
-	public valueX2: boolean = false;
-	public valueX3: boolean = false;
-
-
+	// Массив с попаданиями с трёх полей каждоко игрока
+	public currantPointsArray = [
+		[
+			{ dart: 0 },
+			{ dart: 0 },
+			{ dart: 0 },
+		],
+		[
+			{ dart: 0 },
+			{ dart: 0 },
+			{ dart: 0 },
+		],
+		[
+			{ dart: 0 },
+			{ dart: 0 },
+			{ dart: 0 },
+		]
+	]
 
 
 	constructor(
 		public userService: UsersService,
 		private regComponent: RegAppComponent
-	) {
-		console.log(
-			this.userService.usersGameArray)
-
-
-			let xyz = this.ce("div", 123, "click", this.test);
-
-			
-			
-		}
-
+	) { }
 
 	ngOnInit(): void {
+
 		this.startGameUser()
+
+		console.log(`--- Выбранные игроки ---`, this.userService.choiceUsersToGame)
+		console.log(this.currantPointsArray);
 	}
 
-
-	active() {
-		console.log("click")
-	}
 	newGame() {
-		// this.toggle = !this.toggle;
+
 		this.regComponent.toggleGamePage = false
+		// reset table field values
+		this.userService.choiceUsersToGame.forEach(i => this.userService.usersGameArray.length = 0);
+		this.userService.choiceUsersToGame.forEach(i => this.userService.usersGameArrayCopy.length = 0);
 	}
 
 	startGameUser() {
-		this.userService.usersGameArray.forEach(i => this.userService.pointsArray.push({ name: i.name, points: 501 }));
-		// this.userService.pointsArray.push(this.countStep);
-		console.log(this.userService.pointsArray);
+
+		// filling the starting field of the table with values
+		this.userService.choiceUsersToGame.forEach(i => this.userService.usersGameArray.push({ name: i.name, points: 501 }));
+		this.userService.choiceUsersToGame.forEach(i => this.userService.usersGameArrayCopy.push({ name: i.name, points: 501 }));
 	}
 
-	public addPoint_1(event: any) {
-		// if (this.valueX1 !== true) {
-		// 	this.point_1 = event.target.value
-		// }
-		this.point_1 = event.target.value
+	// Multiplication + add in array
 
-		console.log(this.point_1)
-	}
-	public addPoint_2(event: any) {
-		// if (this.valueX2 !== true) {
-		// 	this.point_2 = (event.target.value) * 2
-		// }
-		this.point_2 = event.target.value
+	public _User1_dart_1: number = 0
+	public _User1_dart_2: number = 0
+	public _User1_dart_3: number = 0
 
-		console.log(this.point_2)
-	}
-	public addPoint_3(event: any) {
-		// if (this.valueX3 !== true) {
-		// 	this.point_3 = (event.target.value) * 3
-		// }
-		this.point_3 = event.target.value
+	public _User2_dart_1: number = 0
+	public _User2_dart_2: number = 0
+	public _User2_dart_3: number = 0
 
-		console.log(this.point_3)
-	}
-
-	public active_x1() {
-		this.valueX1 = true
-		// this.point_1 = this.point_1 * 1
-	}
-	public active_x2() {
-		this.valueX2 = true
-		// this.point_1 = this.point_1 * 2
-	}
-	public active_x3() {
-		this.valueX3 = true
-		// this.point_1 = this.point_1 * 3
-	}
+	public _User3_dart_1: number = 0
+	public _User3_dart_2: number = 0
+	public _User3_dart_3: number = 0
 
 
+	push() {
+
+		this.currantPointsArray[0][0].dart = this._User1_dart_1
+		this.currantPointsArray[0][1].dart = this._User1_dart_2
+		this.currantPointsArray[0][2].dart = this._User1_dart_3
+
+		this.currantPointsArray[1][0].dart = this._User2_dart_1
+		this.currantPointsArray[1][1].dart = this._User2_dart_2
+		this.currantPointsArray[1][2].dart = this._User2_dart_3
+
+		this.currantPointsArray[2][0].dart = this._User3_dart_1
+		this.currantPointsArray[2][1].dart = this._User3_dart_2
+		this.currantPointsArray[2][2].dart = this._User3_dart_3
+	}
+
+	resetInput() {
+
+		this._User1_dart_1 = 0
+		this._User1_dart_2 = 0
+		this._User1_dart_3 = 0
+
+		this._User2_dart_1 = 0
+		this._User2_dart_2 = 0
+		this._User2_dart_3 = 0
+
+		this._User3_dart_1 = 0
+		this._User3_dart_2 = 0
+		this._User3_dart_3 = 0
+	}
+
+	// 1 Gamer - 1 Dart (value multiplication)
+	public _User_1_addDart_1x1(value) {
+		this._User1_dart_1 = value
+
+	}
+	public _User_1_addDart_1x2(value) {
+		this._User1_dart_1 = value * 2
+
+	}
+	public _User_1_addDart_1x3(value) {
+		this._User1_dart_1 = value * 3
+
+	}
+
+	// 1 Gamer - 2 Dart (value multiplication)
+	public _User_1_addDart_2x1(value) {
+		this._User1_dart_2 = value
+
+	}
+	public _User_1_addDart_2x2(value) {
+		this._User1_dart_2 = value * 2
+
+	}
+	public _User_1_addDart_2x3(value) {
+		this._User1_dart_2 = value * 3
+
+	}
+
+	// 1 Gamer - 3 Dart (value multiplication)
+	public _User_1_addDart_3x1(value) {
+		this._User1_dart_3 = value
+
+	}
+	public _User_1_addDart_3x2(value) {
+		this._User1_dart_3 = value * 2
+
+	}
+	public _User_1_addDart_3x3(value) {
+		this._User1_dart_3 = value * 3
+
+	}
+
+
+	// 2 Gamer - 1 Dart (value multiplication)
+	public _User_2_addDart_1x1(value) {
+		this._User2_dart_1 = value
+	}
+	public _User_2_addDart_1x2(value) {
+		this._User2_dart_1 = value * 2
+	}
+	public _User_2_addDart_1x3(value) {
+		this._User2_dart_1 = value * 3
+	}
+
+	// 2 Gamer - 2 Dart (value multiplication)
+	public _User_2_addDart_2x1(value) {
+		this._User2_dart_2 = value
+	}
+	public _User_2_addDart_2x2(value) {
+		this._User2_dart_2 = value * 2
+	}
+	public _User_2_addDart_2x3(value) {
+		this._User2_dart_2 = value * 3
+	}
+
+	// 2 Gamer - 3 Dart (value multiplication)
+	public _User_2_addDart_3x1(value) {
+		this._User2_dart_3 = value
+	}
+	public _User_2_addDart_3x2(value) {
+		this._User2_dart_3 = value * 2
+	}
+	public _User_2_addDart_3x3(value) {
+		this._User2_dart_3 = value * 3
+	}
+
+
+	// 3 Gamer - 1 Dart (value multiplication)
+	public _User_3_addDart_1x1(value) {
+		this._User3_dart_1 = value
+	}
+	public _User_3_addDart_1x2(value) {
+		this._User3_dart_1 = value * 2
+	}
+	public _User_3_addDart_1x3(value) {
+		this._User3_dart_1 = value * 3
+	}
+
+	// 3 Gamer - 2 Dart (value multiplication)
+	public _User_3_addDart_2x1(value) {
+		this._User3_dart_2 = value
+	}
+	public _User_3_addDart_2x2(value) {
+		this._User3_dart_2 = value * 2
+	}
+	public _User_3_addDart_2x3(value) {
+		this._User3_dart_2 = value * 3
+	}
+
+	// 3 Gamer - 3 Dart (value multiplication)
+	public _User_3_addDart_3x1(value) {
+		this._User3_dart_3 = value
+	}
+	public _User_3_addDart_3x2(value) {
+		this._User3_dart_3 = value * 2
+	}
+	public _User_3_addDart_3x3(value) {
+		this._User3_dart_3 = value * 3
+	}
+
+	// addition of points of three darts
+	sumPoits() {
+
+		for (let i = 0; i < this.currantPointsArray.length; i++) {
+			let sum = 0;
+
+			for (let j = 0; j < this.currantPointsArray[i].length; j++) {
+				sum += +this.currantPointsArray[i][j].dart
+			}
+
+			this.userService.currantTotalPointsArray[i] = { totalPoint: sum };
+		}
+	}
+
+	// Step
 	public addStep() {
 
-		this.pointArray.push(this.point_1, this.point_2, this.point_3)
-		this.valueX1, this.valueX2, this.valueX3 = false;
-		this.countStep++
-		this.userService.pointsArray.map((i, ind) => {
-			for (let j = 0; j < this.pointArray.length; j++) {
-				if (ind == j) {
-					i.points = i.points - this.pointArray[j]
+		this.push();
+		this.sumPoits();
 
+		console.log(`Текущие очки игроков`, this.userService.usersGameArray)
+
+		console.log(`Текущие очки попаданий\n`, `Gamer 1: ${(this.userService.currantTotalPointsArray[0].totalPoint)} (${this.currantPointsArray[0][0].dart}+${this.currantPointsArray[0][1].dart}+${this.currantPointsArray[0][2].dart})\n`, `Gamer 2: ${(this.userService.currantTotalPointsArray[1].totalPoint)} (${this.currantPointsArray[1][0].dart}+${this.currantPointsArray[1][1].dart}+${this.currantPointsArray[1][2].dart})\n`, `Gamer 3: ${(this.userService.currantTotalPointsArray[2].totalPoint)} (${this.currantPointsArray[2][0].dart}+${this.currantPointsArray[2][1].dart}+${this.currantPointsArray[2][2].dart})`)
+
+		console.log(`Текущие очки попаданий`, this.userService.currantTotalPointsArray)
+
+		this.addResultPointToPage();
+	}
+
+	public usersRemaningPoints = []
+
+	// add line to result table
+	addResultPointToPage() {
+
+		this.usersRemaningPoints.push([])
+		this.userService.usersGameArray.forEach((i, ind) => {
+
+			for (let j = 0; j < this.userService.usersGameArray.length; j++) {
+
+				if (ind == j) {
+					let x = i.points - (this.userService.currantTotalPointsArray[j].totalPoint);
+					if (x > 1) {
+						i.points = x
+						console.log(x);
+
+					}
+					else if (x == 0) {
+						i.points = x
+						alert(`${this.userService.usersGameArray[j].name} Winner!`)
+						break;
+					}
+
+					else console.log(`${this.userService.usersGameArray[j].name} набрал(а): ${this.userService.currantTotalPointsArray[j].totalPoint} очков - не сможет выйти по удвоению.`);
+
+					this.usersRemaningPoints[this.countStep - 1].push(
+						{ point: i.points, step: this.countStep },
+					)
 				}
 			}
 		})
 
-		this.arr.push(this.userService.pointsArray)
-		console.log(this.arr)
+		// Step - 20
+		if (this.countStep === 20) {
 
+			this.userService.usersGameArray.forEach((i) => {
+				var min = this.userService.usersGameArray[0].points
+				if (i.points < min) {
+					min = i.points
+					console.log(`Winner - ${i.name}`)
+
+				}
+				if (i.points == min)
+					console.log(`Ничья`)
+				alert(`Ничья! Дополнительные 10 раундов!`)
+			})
+		}
+
+		// Step 30
+		if (this.countStep === 30) {
+
+			this.userService.usersGameArray.forEach((i) => {
+
+				var min = this.userService.usersGameArray[0].points
+
+				if (i.points < min) {
+					min = i.points
+					console.log(`Winner - ${i.name}!`)
+				}
+
+				if (i.points == min)
+					console.log(`Ничья`)
+				alert(`Игра окончена в ничью!`)
+			})
+		}
+
+		console.log(this.userService.choiceUsersToGame)
+		console.log(this.userService.usersGameArray)
+		console.log(this.usersRemaningPoints)
+
+		// Step
+		this.countStep++
+		this.resetInput();
 	}
-
-
-	public ce(name="div",text=null, event=null, fn) {
-        let elem = document.createElement(name);
-            if(text!=null) elem.innerHTML=text;
-            if(event!=null) elem.addEventListener(event,fn);
-
-        return elem
-    }
-
-	test() {
-		console.log("test")
-	}
-
-	
-
-
 
 
 

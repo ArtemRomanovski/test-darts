@@ -5,3 +5,10 @@ export class UserCard {
 		public email?: string
 	) { }
 }
+
+export interface PointCard {
+
+	currantPoint: number
+	totalPoint: number
+
+}
