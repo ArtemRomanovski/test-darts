@@ -10,18 +10,17 @@ export class UsersService {
 	@Input() UserCard;
 	@Input() PointCard;
 
-	// Текущие очки игроков
+	// Current player points 
 	public usersGameArray = []
 	public usersGameArrayCopy = []
-	
-	// Полученнные очки
+
+	// Points received
 	public currantTotalPointsArray = []
 
-	// выбранные игроки 
+	// Selected Players
 	public choiceUsersToGame = [];
 
-
-
+	// Array with fake users
 	public usersArray: UserCard[] = [
 		{
 			name: "Jack",
@@ -48,17 +47,7 @@ export class UsersService {
 
 	constructor() { }
 
-	// Get All Users
-	// public getAll() {
-	// 	return this.usersArray;
-	// }
-
-	// Add User
-	// public addUser(name: string, email: string) {
-	// 	this.usersArray.push({ name, email });
-	// 	return this.usersArray
-	// }
-
+	// Add New User
 	public addUser(newUser: UserCard) {
 		this.usersArray.push(newUser)
 	}

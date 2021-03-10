@@ -16,11 +16,6 @@ import { HttpClient } from '@angular/common/http'
 })
 export class RegAppComponent implements OnInit {
 
-	// @ViewChild("nickName") nickName: ElementRef
-	// @ViewChild("nickEmail") nickEmail: ElementRef
-	// @Input() UserCard;
-	// @Input() usersArray;
-
 	public fieldColor: string;
 
 	public name: string = "";
@@ -33,8 +28,6 @@ export class RegAppComponent implements OnInit {
 	public choice_501: boolean = false;
 	public choice_301: boolean = false;
 
-
-
 	constructor(public userService: UsersService) {
 
 	}
@@ -42,13 +35,6 @@ export class RegAppComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	// addUser() {
-	// 	this.name = this.nickName.nativeElement.value
-	// 	this.email = this.nickEmail.nativeElement.value
-	// 	this.newUser = { name: this.name, email: this.email }
-	// 	this._http.usersArray.push({ name: this.name, email: this.email })
-
-	// }
 	public addUser() {
 		const newUser: UserCard = {
 			name: this.name,
@@ -75,13 +61,11 @@ export class RegAppComponent implements OnInit {
 		this.toggleGamePage = !this.toggleGamePage
 	}
 
-
-
 	public playerChoice(i: number) {
 		console.log(i)
 		if (this.userService.choiceUsersToGame.length < 3) {
 			this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
-		
+
 		}
 		else {
 			this.userService.choiceUsersToGame.shift();
@@ -99,16 +83,14 @@ export class RegAppComponent implements OnInit {
 		this.choice_301 = true;
 	}
 
+	// Checking the selection of all players and the type of game 
 	public checkStart() {
 		if ((this.userService.choiceUsersToGame.length === 3) && (this.choice_501 === true)) {
 			this.togglePage();
 		}
+
+		else alert("Выберите игру")
 		console.log(this.userService.choiceUsersToGame, this.choice_501 === true);
-
 	}
-
-
-
-
 
 }

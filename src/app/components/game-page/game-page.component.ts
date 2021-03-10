@@ -75,12 +75,10 @@ export class GamePageComponent implements OnInit {
 		this.userService.choiceUsersToGame.forEach(i => this.userService.usersGameArray.push({ name: i.name, points: 501 }));
 		this.userService.choiceUsersToGame.forEach(i => this.userService.usersGameArrayCopy.push({ name: i.name, points: 501 }));
 
-		this.titleStartInfo = 
-		`${this.userService.usersGameArrayCopy[0].name}: ${this.userService.usersGameArrayCopy[0].points} point(s)\n${this.userService.usersGameArrayCopy[1].name}: ${this.userService.usersGameArrayCopy[1].points} point(s)\n${this.userService.usersGameArrayCopy[2].name}: ${this.userService.usersGameArrayCopy[2].points} point(s)`
+		this.titleStartInfo =
+			`${this.userService.usersGameArrayCopy[0].name}: ${this.userService.usersGameArrayCopy[0].points} point(s)\n${this.userService.usersGameArrayCopy[1].name}: ${this.userService.usersGameArrayCopy[1].points} point(s)\n${this.userService.usersGameArrayCopy[2].name}: ${this.userService.usersGameArrayCopy[2].points} point(s)`
 
 	}
-
-	// Multiplication + add in array
 
 	public _User1_dart_1: number = 0
 	public _User1_dart_2: number = 0
@@ -254,15 +252,10 @@ export class GamePageComponent implements OnInit {
 
 		this.push();
 		this.sumPoits();
-
-		console.log(`Текущие очки игроков`, this.userService.usersGameArray)
+		this.addResultPointToPage();
 
 		// title info
 		this.titleStepInfo = `Текущие очки попаданий:\n${this.userService.usersGameArray[0].name}: ${(this.userService.currantTotalPointsArray[0].totalPoint)} (${this.currantPointsArray[0][0].dart}+${this.currantPointsArray[0][1].dart}+${this.currantPointsArray[0][2].dart})\n${this.userService.usersGameArray[1].name}: ${(this.userService.currantTotalPointsArray[1].totalPoint)} (${this.currantPointsArray[1][0].dart}+${this.currantPointsArray[1][1].dart}+${this.currantPointsArray[1][2].dart})\n${this.userService.usersGameArray[2].name}: ${(this.userService.currantTotalPointsArray[2].totalPoint)} (${this.currantPointsArray[2][0].dart}+${this.currantPointsArray[2][1].dart}+${this.currantPointsArray[2][2].dart})`
-
-		console.log(`Текущие очки попаданий`, this.userService.currantTotalPointsArray)
-
-		this.addResultPointToPage();
 	}
 
 	public usersRemaningPoints = []
@@ -279,8 +272,6 @@ export class GamePageComponent implements OnInit {
 					let x = i.points - (this.userService.currantTotalPointsArray[j].totalPoint);
 					if (x > 1) {
 						i.points = x
-						console.log(x);
-
 					}
 					else if (x == 0) {
 						i.points = x
@@ -288,7 +279,7 @@ export class GamePageComponent implements OnInit {
 						break;
 					}
 
-					else console.log(`${this.userService.usersGameArray[j].name} набрал(а): ${this.userService.currantTotalPointsArray[j].totalPoint} очков - не сможет выйти по удвоению.`);
+					else alert(`${this.userService.usersGameArray[j].name} набрал(а): ${this.userService.currantTotalPointsArray[j].totalPoint} очков - не сможет выйти по удвоению.`);
 
 					this.usersRemaningPoints[this.countStep - 1].push(
 						{ point: i.points, step: this.countStep },
@@ -304,12 +295,10 @@ export class GamePageComponent implements OnInit {
 				var min = this.userService.usersGameArray[0].points
 				if (i.points < min) {
 					min = i.points
-					console.log(`Winner - ${i.name}`)
-
+					alert(`Winner - ${i.name}`)
 				}
 				if (i.points == min)
-					console.log(`Ничья`)
-				alert(`Ничья! Дополнительные 10 раундов!`)
+					alert(`Ничья! Дополнительные 10 раундов!`)
 			})
 		}
 
@@ -322,18 +311,13 @@ export class GamePageComponent implements OnInit {
 
 				if (i.points < min) {
 					min = i.points
-					console.log(`Winner - ${i.name}!`)
+					alert(`Winner - ${i.name}!`)
 				}
 
 				if (i.points == min)
-					console.log(`Ничья`)
-				alert(`Игра окончена в ничью!`)
+					alert(`Игра окончена в ничью!`)
 			})
 		}
-
-		console.log(this.userService.choiceUsersToGame)
-		console.log(this.userService.usersGameArray)
-		console.log(this.usersRemaningPoints)
 
 		// Step
 		this.countStep++
