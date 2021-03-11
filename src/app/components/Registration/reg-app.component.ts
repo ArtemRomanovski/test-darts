@@ -16,6 +16,10 @@ import { HttpClient } from '@angular/common/http'
 })
 export class RegAppComponent implements OnInit {
 
+
+	public regExpEmail = [/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.)+([a-zA-Z0-9-]+)*$/];
+	public maxLength: number = 20;
+
 	public fieldColor: string;
 
 	public name: string = "";
@@ -28,20 +32,40 @@ export class RegAppComponent implements OnInit {
 	public choice_501: boolean = false;
 	public choice_301: boolean = false;
 
+
+
 	constructor(public userService: UsersService) {
 
 	}
 
 	ngOnInit() {
+		console.log(this.userService.usersArray);
+
 	}
 
-	public addUser() {
+	public log() {
+
+
+	}
+
+	// add New User
+	public addUser(nickName, email) {
+
 		const newUser: UserCard = {
 			name: this.name,
 			email: this.email,
 		}
+
+		// check valid
+		if ((nickName.valid === true && email.valid === true)) {
+
+			newUser.name = nickName.value;
+			newUser.email = email.value
+
+			this.userService.addUser(newUser);
+			this.toggle = !this.toggle
+		}
 		console.log(newUser)
-		this.userService.addUser(newUser);
 	}
 
 	public remove(name: string) {
@@ -50,11 +74,7 @@ export class RegAppComponent implements OnInit {
 
 	// change registr page
 	public toggleCards() {
-
-		if (this.name == "") {
-			alert(" Поле nickName пустое")
-		}
-		else this.toggle = !this.toggle
+		this.toggle = !this.toggle
 	}
 
 	public togglePage() {
@@ -92,5 +112,26 @@ export class RegAppComponent implements OnInit {
 		else alert("Выберите игру")
 		console.log(this.userService.choiceUsersToGame, this.choice_501 === true);
 	}
+
+	public serch: string;
+
+	search(value) {
+		console.log(value);
+		console.log(this.userService.usersArray);
+
+
+		this.userService.usersArray.filter(i => {
+			if (value == i.name) {
+				console.log(111);
+
+			}
+			else console.log(222);
+
+		})
+
+	}
+
+
+
 
 }

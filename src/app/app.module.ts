@@ -18,9 +18,7 @@ import { LogoComponent } from './components/logo/logo.component';
 //404
 import { NotFoudComponent } from './components/not-foud/not-foud.component';
 import { GamePageComponent } from './components/game-page/game-page.component';
-import { CountFieldComponent } from './components/game-page/count-field/count-field.component';
-import { HeaderFieldComponent } from './components/game-page/header-field/header-field.component';
-import { TableFieldComponent } from './components/game-page/table-field/table-field.component';
+import { FormComponent } from './components/form/form.component';
 
 
 const routes = [
@@ -37,9 +35,7 @@ const routes = [
 		RegAppComponent,
 		LogoComponent,
 		GamePageComponent,
-		CountFieldComponent,
-		HeaderFieldComponent,
-		TableFieldComponent,
+		FormComponent,
 	],
 	imports: [
 		BrowserModule,

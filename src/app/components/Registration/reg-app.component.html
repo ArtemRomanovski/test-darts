@@ -1,21 +1,40 @@
 <div *ngIf="toggle;" class="reg-app__container col-w">
 	<app-logo></app-logo>
-	<p style="margin-bottom: 3rem; font-size: 16px;">Add a new player to start the game</p>
+	<p style="margin-bottom: 3rem; font-size: 16px;">
+		Add a new player to start the game
+	</p>
+
 	<div class="form_field">
-		<div>
-			<div class="form_field__nick-name">
-				<label for="">Nickname</label>
-				<input class="field" type="text" [(ngModel)]="name" required maxlength="20" autofocus>
+		<form>
+			<div class="form-group form_field__nick-name">
+				<label for="nickName">Nickname</label>
+				<input required minlength="3" [maxlength]="maxLength" ngModel name="nickName" #nickName="ngModel"
+					id="nickName" class="form-control" type="text" autofocus>
+				<div class="alert alert-danger" *ngIf="nickName.touched && !nickName.valid">
+					<div *ngIf="nickName.errors.required">Nickname is required.</div>
+					<div *ngIf="nickName.errors.minlength">Nickname should be minimum
+						{{nickName.errors.minlength.requiredLength}}
+						characters.</div>
+					<div>Nickname should be maximum 20 characters.</div>
+				</div>
 			</div>
-			<div class="form_field__e-mail">
-				<label for="">e-mail</label>
-				<input class="field" type="email" [(ngModel)]="email">
+
+			<div class="form-group form_field__e-mail">
+				<label for="email">e-mail</label>
+				<input [pattern]="regExpEmail[0]" id="email" ngModel name="email" #email="ngModel" class="form-control"
+					type="email">
+				<div class="alert alert-danger" *ngIf="!email.valid">Email is not valid.</div>
 			</div>
+
 			<div>
-				<button (click)=" addUser(); toggleCards()" type="button" class="form_field__button add">Add</button>
+				<button (click)="addUser(nickName, email);" type="submit" class="form_field__button add">Add</button>
 			</div>
-		</div>
+
+		</form>
 	</div>
+
+
+
 </div>
 
 <div *ngIf="!toggle && !toggleGamePage">
@@ -31,7 +50,10 @@
 
 					<form action="" class="search_form">
 
-						<input class="search_field field" type="text" placeholder="Search">
+						<input #searchInput (input)="search(searchInput.value)" (ngModelChange)="search()"
+							class="search_field field" type="text" placeholder="Search">
+						<button class="search_button">
+						</button>
 
 						<button (click)="toggleCards()" class="add_new-player add">New player</button>
 
@@ -52,7 +74,7 @@
 			</div>
 			<div>
 				<button (click)="Game_501()" class="choose_game__buttom">501</button>
-				<button (click)="Game_301()"class="choose_game__buttom">301</button>
+				<button (click)="Game_301()" class="choose_game__buttom">301</button>
 			</div>
 			<div class="game_button__box">
 				<button (click)="checkStart()" class="add game_button">Start</button>
