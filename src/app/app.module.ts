@@ -6,7 +6,6 @@ import { AppComponent } from "./app.component";
 import { RegAppComponent } from "./components/Registration/reg-app.component";
 import { LogoComponent } from "./components/logo/logo.component";
 import { GamePageComponent } from "./components/game-page/game-page.component";
-import { FormComponent } from "./components/form/form.component";
 
 @NgModule({
 	declarations: [
@@ -14,7 +13,6 @@ import { FormComponent } from "./components/form/form.component";
 		RegAppComponent,
 		LogoComponent,
 		GamePageComponent,
-		FormComponent
 	],
 	imports: [
 		BrowserModule,

@@ -101,7 +101,9 @@
 					margin: .5rem .5rem 1rem 0;
 					padding: 0 .5rem;
 				};
-		
+				.search_button {
+					// background-image: url("../../../assets/1.png");
+				};			
 				.add_new-player {
 					margin: .5rem 0 1rem .5rem;
 				};
@@ -139,11 +141,15 @@
 			box-shadow: inset -5px 0 5px -5px #00ffff;
 		};
 
-		.user_box:active {
-			background-color: #ddeeff;
-			transition: background 300ms ease-in 0ms;
-			box-shadow: inset -5px 0 5px -5px #00ffff;
+		.user_box:active, :focus, :visited {
+			background-color: rgb(115, 173, 255);
+			box-shadow: inset -5px 0 5px -5px rgb(164, 151, 255);
 		};
+
+		.active {
+			background-color: rgb(115, 173, 255);
+			box-shadow: inset -5px 0 5px -5px rgb(164, 151, 255);
+		}
 
 		.focus {
 			background: cha#0f90e0;
@@ -187,8 +193,10 @@
 		transition: background 300ms ease-in 0ms;
 		box-shadow: inset -5px 0 5px -5px #37bf97;
 	};
-
-	.search_button {
-		background-image: url("../../../assets/1.png");
-	};
 };
+.active {
+	background: red;
+}
+.no-active {
+	background: green;
+}

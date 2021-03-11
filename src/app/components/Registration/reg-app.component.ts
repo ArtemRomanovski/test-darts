@@ -1,3 +1,4 @@
+import { isNgTemplate } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { UserCard } from "../models/user";
 import { UsersService } from "../services/users.service";
@@ -12,7 +13,6 @@ import { UsersService } from "../services/users.service";
 export class RegAppComponent implements OnInit {
 	public regExpEmail = [/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.)+([a-zA-Z0-9-]+)*$/];
 	public maxLength: number = 20;
-	public fieldColor: string;
 	public name: string = "";
 	public email: string;
 	public toggle: boolean = true;
@@ -20,7 +20,8 @@ export class RegAppComponent implements OnInit {
 	public disabled: string = "";
 	public choice_501: boolean = false;
 	public choice_301: boolean = false;
-	public serch: string;
+	public findName;
+	// public serch: string;
 
 	constructor(public userService: UsersService) {};
 
@@ -56,15 +57,25 @@ export class RegAppComponent implements OnInit {
 		this.toggleGamePage = !this.toggleGamePage;
 	};
 
-	public playerChoice(i: number) {
+	public playerChoice(i: number, findUser: object) {
+		console.log(this.userService.usersArray[i]);
+		console.log(findUser);
 		if (this.userService.choiceUsersToGame.length < 3) {
-			this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
+			if(findUser !== undefined) {
+				this.userService.choiceUsersToGame.push(findUser);
+			}
+			else this.userService.choiceUsersToGame.push(this.userService.usersArray[i])
 		}
 		else {
 			this.userService.choiceUsersToGame.shift();
-			this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
+			if(findUser !== undefined) {
+				this.userService.choiceUsersToGame.push(findUser);
+			}
+			else this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
 		};
+		console.log(this.userService.choiceUsersToGame);
 	};
+
 
 	public Game_501() {
 		this.choice_501 = true;
@@ -90,9 +101,16 @@ export class RegAppComponent implements OnInit {
 		console.log(this.userService.usersArray);
 		this.userService.usersArray.filter(i => {
 			if (value == i.name) {
-				console.log(111);
+				return this.findName = i;
 			}
-			else console.log(222);
+			// be created
+			else console.log("Нет такого игрока");
 		});
+	};
+	
+	public findUser() {
+		var i = undefined;
+		var findUser = this.findName;	
+		this.playerChoice(i, findUser);		
 	};
 };

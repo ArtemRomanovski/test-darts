@@ -77,28 +77,34 @@ class="reg-app__container col-w">
 					<p class="col-w">
 						Select players
 					</p>
-					<form class="search_form">
-						<input 
-							#searchInput 
-							(input)="search(searchInput.value)" 
-							(ngModelChange)="search()"
-							class="search_field field" 
-							type="text" 
-							placeholder="Search">
-						<button class="search_button">
-						</button>
-						<button 
-							(click)="toggleCards()" 
-							class="add_new-player add">
-							New player
+					<div class="search_form">
+						<form>
+							<input 
+								#searchInput 
+								(input)="search(searchInput.value)" 
+								(ngModelChange)="search()"
+								class="search_field field" 
+								type="text" 
+								placeholder="Search">
+							<button 
+								class="search_button add"
+								(click)="findUser()">
+								
 							</button>
-					</form>
+							<!-- <button 
+								(click)="toggleCards()" 
+								class="add_new-player add">
+								New player
+							</button> -->
+						</form>
+					</div>
 				</div>
 				<ul>
 					<li 
 						*ngFor="let user of userService.usersArray; let i = index;" 
-						(click)="playerChoice(i);"
-						class="user_box field">
+						(click)="playerChoice(i)"
+						class="user_box field"
+						>
 						<div class="name_field">
 							{{user?.name}}
 						</div>
