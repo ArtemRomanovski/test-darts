@@ -1,25 +1,20 @@
-import { Injectable, Input } from '@angular/core';
-import { from } from 'rxjs';
+import { Injectable, Input } from "@angular/core";
 import { UserCard } from "../models/user";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class UsersService {
-
 	@Input() UserCard;
 	@Input() PointCard;
 
 	// Current player points 
-	public usersGameArray = []
-	public usersGameArrayCopy = []
-
+	public usersGameArray = [];
+	public usersGameArrayCopy = [];
 	// Points received
-	public currantTotalPointsArray = []
-
+	public currantTotalPointsArray = [];
 	// Selected Players
 	public choiceUsersToGame = [];
-
 	// Array with fake users
 	public usersArray: UserCard[] = [
 		{
@@ -42,25 +37,18 @@ export class UsersService {
 			name: "Brad",
 			email: "Brad@gmail.com"
 		}
-
-	]
+	];
 
 	constructor() { }
-
 	// Add New User
 	public addUser(newUser: UserCard) {
-		this.usersArray.push(newUser)
-	}
-
+		this.usersArray.push(newUser);
+	};
 	// Remove User
 	public removeUser(name: string) {
 		return this.usersArray = this.usersArray.filter(user => user.name !== name);
-	}
-
-
-
-
-}
+	};
+};
 
 
 

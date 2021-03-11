@@ -7,14 +7,14 @@
 
 	.new_game__button{
 		width: 150px;
-	}
-}
+	};
+};
 
 .darts_box {
 
 	.darts_box__main_box {
 		display: flex;
-	}
+	};
 	
 	.first_field {
 
@@ -24,7 +24,7 @@
 		flex-flow: column;
 		align-items: center;
 		justify-content: space-around;
-	}
+	};
 	
 	.darts_box__main {
 
@@ -47,25 +47,25 @@
 			border-bottom-right-radius: 0;
 		
 			background-color: #ffffff;
-		}
+		};
 
 		button {
 			width: 3rem;
 			height: 3rem;
 			border: .2rem solid #4d5061
-		}
+		};
 		
 		button._2 {
 			width: 2.8rem;
 			border-left: .1rem;
 			border-right: .1rem;
-		}
+		};
 
 		button._3 {
 			border-top-right-radius: 18px;
 			border-bottom-right-radius: 18px;
-		}
-	}
+		};
+	};
 
 	.main_box__players_box {
 
@@ -77,21 +77,21 @@
 		button:focus, button:active {
 			background-color: #4d5061;
 			color: #ffffff;
-		}
+		};
 
 		.players_box__1-player {
 			display: flex;
 			justify-content: flex-end;
-		}
+		};
 		.players_box__2-player {
 			display: flex;
 			justify-content: flex-end;
-		}
+		};
 		.players_box__3-player {
 			display: flex;
 			justify-content: flex-end;
-		}
-	}
+		};
+	};
 	
 	.darts_box__button {
 		display: flex;
@@ -101,9 +101,9 @@
 
 		button {
 			width: 400px;
-		}
-	}
-}
+		};
+	};
+};
 
 .usersName_box {
 	width: 820px;
@@ -115,8 +115,8 @@
 		display: flex;
 		justify-content: center;
 		width: 33%;
-	}
-}
+	};
+};
 
 .table_box {
 
@@ -138,7 +138,7 @@
 			display: flex;
 			justify-content: right;
 			align-items: center;
-		}
+		};
 
 		.table_line__points_box {
 
@@ -153,8 +153,8 @@
 				display: flex;
 				justify-content: center;
 				width: 33%;
-			}
-		}
+			};
+		};
 
 		.table_line__info_box {
 
@@ -165,9 +165,9 @@
 			align-items: center;
 
 			cursor: pointer;
-		}
-	}
-}
+		};
+	};
+};
 
 
 

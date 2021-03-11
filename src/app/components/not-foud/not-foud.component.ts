@@ -6,11 +6,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./not-foud.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NotFoudComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class NotFoudComponent {
 
 }

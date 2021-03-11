@@ -1,137 +1,98 @@
-import { stringify } from '@angular/compiler/src/util';
-import { Component, OnInit, Input, ViewChild, ElementRef, Output } from '@angular/core';
-import { inject } from '@angular/core/testing';
-import { FormControl, Validator, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
-import { from, Observable } from 'rxjs';
-import { UserCard } from '../models/user';
-import { UsersService } from '../services/users.service';
-import { HttpClient } from '@angular/common/http'
+import { Component, OnInit } from "@angular/core";
+import { UserCard } from "../models/user";
+import { UsersService } from "../services/users.service";
 
 @Component({
-	selector: 'app-reg-app',
-	templateUrl: './reg-app.component.html',
-	styleUrls: ['./reg-app.component.scss'],
+	selector: "app-reg-app",
+	templateUrl: "./reg-app.component.html",
+	styleUrls: ["./reg-app.component.scss"],
 	providers: [UsersService]
 })
+
 export class RegAppComponent implements OnInit {
-
-
 	public regExpEmail = [/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.)+([a-zA-Z0-9-]+)*$/];
 	public maxLength: number = 20;
-
 	public fieldColor: string;
-
 	public name: string = "";
 	public email: string;
-	// public newUser: UserCard;
 	public toggle: boolean = true;
 	public toggleGamePage: boolean = false;
 	public disabled: string = "";
-
 	public choice_501: boolean = false;
 	public choice_301: boolean = false;
+	public serch: string;
 
-
-
-	constructor(public userService: UsersService) {
-
-	}
+	constructor(public userService: UsersService) {};
 
 	ngOnInit() {
 		console.log(this.userService.usersArray);
-
-	}
-
-	public log() {
-
-
-	}
+	};
 
 	// add New User
 	public addUser(nickName, email) {
-
 		const newUser: UserCard = {
 			name: this.name,
 			email: this.email,
-		}
-
+		};
 		// check valid
 		if ((nickName.valid === true && email.valid === true)) {
-
 			newUser.name = nickName.value;
-			newUser.email = email.value
-
+			newUser.email = email.value;
 			this.userService.addUser(newUser);
-			this.toggle = !this.toggle
-		}
-		console.log(newUser)
-	}
+			this.toggle = !this.toggle;
+		};
+	};
 
 	public remove(name: string) {
 		this.userService.removeUser(name);
-	}
+	};
 
 	// change registr page
 	public toggleCards() {
-		this.toggle = !this.toggle
-	}
+		this.toggle = !this.toggle;
+	};
 
 	public togglePage() {
-		this.toggleGamePage = !this.toggleGamePage
-	}
+		this.toggleGamePage = !this.toggleGamePage;
+	};
 
 	public playerChoice(i: number) {
-		console.log(i)
 		if (this.userService.choiceUsersToGame.length < 3) {
 			this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
-
 		}
 		else {
 			this.userService.choiceUsersToGame.shift();
-			this.userService.choiceUsersToGame.push(this.userService.usersArray[i])
-		}
-	}
+			this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
+		};
+	};
 
 	public Game_501() {
 		this.choice_501 = true;
 		this.choice_301 = false;
-	}
+	};
 
 	public Game_301() {
 		this.choice_501 = false;
 		this.choice_301 = true;
-	}
+	};
 
 	// Checking the selection of all players and the type of game 
 	public checkStart() {
 		if ((this.userService.choiceUsersToGame.length === 3) && (this.choice_501 === true)) {
 			this.togglePage();
 		}
-
-		else alert("Выберите игру")
+		else alert("Выберите игру");
 		console.log(this.userService.choiceUsersToGame, this.choice_501 === true);
-	}
+	};
 
-	public serch: string;
-
-	search(value) {
+	public search(value) {
 		console.log(value);
 		console.log(this.userService.usersArray);
-
-
 		this.userService.usersArray.filter(i => {
 			if (value == i.name) {
 				console.log(111);
-
 			}
 			else console.log(222);
-
-		})
-
-	}
-
-
-
-
-}
+		});
+	};
+};

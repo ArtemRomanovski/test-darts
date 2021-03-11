@@ -1,42 +1,70 @@
-<div *ngIf="toggle;" class="reg-app__container col-w">
+<div 
+*ngIf="toggle;" 
+class="reg-app__container col-w">
 	<app-logo></app-logo>
 	<p style="margin-bottom: 3rem; font-size: 16px;">
 		Add a new player to start the game
 	</p>
-
 	<div class="form_field">
 		<form>
 			<div class="form-group form_field__nick-name">
-				<label for="nickName">Nickname</label>
-				<input required minlength="3" [maxlength]="maxLength" ngModel name="nickName" #nickName="ngModel"
-					id="nickName" class="form-control" type="text" autofocus>
-				<div class="alert alert-danger" *ngIf="nickName.touched && !nickName.valid">
-					<div *ngIf="nickName.errors.required">Nickname is required.</div>
-					<div *ngIf="nickName.errors.minlength">Nickname should be minimum
+				<label for="nickName">
+					Nickname
+				</label>
+				<input 
+					required minlength="3" 
+					[maxlength]="maxLength" 
+					ngModel name="nickName" 
+					#nickName="ngModel"
+					id="nickName" 
+					class="form-control" 
+					type="text" 
+					autofocus>
+				<div 
+					class="alert alert-danger" 
+					*ngIf="nickName.touched && !nickName.valid">
+					<div *ngIf="nickName.errors.required">
+						Nickname is required.
+					</div>
+					<div *ngIf="nickName.errors.minlength">
+						Nickname should be minimum
 						{{nickName.errors.minlength.requiredLength}}
-						characters.</div>
-					<div>Nickname should be maximum 20 characters.</div>
+						characters.
+					</div>
+					<div>
+						Nickname should be maximum 20 characters.
+					</div>
 				</div>
 			</div>
-
 			<div class="form-group form_field__e-mail">
-				<label for="email">e-mail</label>
-				<input [pattern]="regExpEmail[0]" id="email" ngModel name="email" #email="ngModel" class="form-control"
+				<label for="email">
+					e-mail
+				</label>
+				<input 
+					[pattern]="regExpEmail[0]" 
+					id="email" 
+					ngModel 
+					name="email" 
+					#email="ngModel" 
+					class="form-control"
 					type="email">
-				<div class="alert alert-danger" *ngIf="!email.valid">Email is not valid.</div>
+				<div 
+					class="alert alert-danger" 
+					*ngIf="!email.valid">
+					Email is not valid.
+				</div>
 			</div>
-
 			<div>
-				<button (click)="addUser(nickName, email);" type="submit" class="form_field__button add">Add</button>
+				<button 
+					(click)="addUser(nickName, email);" 
+					type="submit" 
+					class="form_field__button add">
+					Add
+				</button>
 			</div>
-
 		</form>
 	</div>
-
-
-
 </div>
-
 <div *ngIf="!toggle && !toggleGamePage">
 	<div class="container_2-page">
 		<div class="logo_box">
@@ -46,21 +74,30 @@
 			<div class="choice-page">
 				<!-- Search field -->
 				<div class="search_box">
-					<p class="col-w">Select players</p>
-
-					<form action="" class="search_form">
-
-						<input #searchInput (input)="search(searchInput.value)" (ngModelChange)="search()"
-							class="search_field field" type="text" placeholder="Search">
+					<p class="col-w">
+						Select players
+					</p>
+					<form class="search_form">
+						<input 
+							#searchInput 
+							(input)="search(searchInput.value)" 
+							(ngModelChange)="search()"
+							class="search_field field" 
+							type="text" 
+							placeholder="Search">
 						<button class="search_button">
 						</button>
-
-						<button (click)="toggleCards()" class="add_new-player add">New player</button>
-
+						<button 
+							(click)="toggleCards()" 
+							class="add_new-player add">
+							New player
+							</button>
 					</form>
 				</div>
 				<ul>
-					<li *ngFor="let user of userService.usersArray; let i = index;" (click)="playerChoice(i);"
+					<li 
+						*ngFor="let user of userService.usersArray; let i = index;" 
+						(click)="playerChoice(i);"
 						class="user_box field">
 						<div class="name_field">
 							{{user?.name}}
@@ -68,20 +105,38 @@
 						<div class="email_field">
 							{{user?.email}}
 						</div>
-						<div (click)="remove(user?.name)" class="delete_user">x</div>
+						<div 
+							(click)="remove(user?.name)" 
+							class="delete_user">
+							x
+						</div>
 					</li>
 				</ul>
 			</div>
 			<div>
-				<button (click)="Game_501()" class="choose_game__buttom">501</button>
-				<button (click)="Game_301()" class="choose_game__buttom">301</button>
+				<button 
+					(click)="Game_501()" 
+					class="choose_game__buttom">
+					501
+				</button>
+				<button 
+					(click)="Game_301()" 
+					class="choose_game__buttom">
+					301
+				</button>
 			</div>
 			<div class="game_button__box">
-				<button (click)="checkStart()" class="add game_button">Start</button>
+				<button 
+					(click)="checkStart()" 
+					class="add game_button">
+					Start
+				</button>
 			</div>
 		</div>
 		<div class="empty_box"></div>
 	</div>
 </div>
-
-<app-game-page class="container_2-page" *ngIf="!toggle && toggleGamePage"></app-game-page>
+<app-game-page 
+	class="container_2-page" 
+	*ngIf="!toggle && toggleGamePage">
+</app-game-page>
