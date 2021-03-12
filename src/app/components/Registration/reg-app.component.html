@@ -89,21 +89,21 @@ class="reg-app__container col-w">
 							<button 
 								class="search_button add"
 								(click)="findUser()">
-								
 							</button>
-							<!-- <button 
+							<button 
 								(click)="toggleCards()" 
 								class="add_new-player add">
 								New player
-							</button> -->
+							</button>
 						</form>
 					</div>
 				</div>
 				<ul>
 					<li 
 						*ngFor="let user of userService.usersArray; let i = index;" 
-						(click)="playerChoice(i)"
+						(click)="playerChoice(i); changeColor(i)"
 						class="user_box field"
+						[class.active]="user.active==true"
 						>
 						<div class="name_field">
 							{{user?.name}}

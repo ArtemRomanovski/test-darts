@@ -34,6 +34,7 @@ export class RegAppComponent implements OnInit {
 		const newUser: UserCard = {
 			name: this.name,
 			email: this.email,
+			active: false
 		};
 		// check valid
 		if ((nickName.valid === true && email.valid === true)) {
@@ -58,24 +59,43 @@ export class RegAppComponent implements OnInit {
 	};
 
 	public playerChoice(i: number, findUser: object) {
-		console.log(this.userService.usersArray[i]);
-		console.log(findUser);
-		if (this.userService.choiceUsersToGame.length < 3) {
-			if(findUser !== undefined) {
-				this.userService.choiceUsersToGame.push(findUser);
+		// Проверка пустой ли массив
+		if(this.userService.choiceUsersToGame.length !== 0) {
+			console.log(this.userService.choiceUsersToGame);
+			// Проверка на одинаковых игроков
+			// this.userService.choiceUsersToGame.forEach((elem, idx) => {
+				// if (elem.name !== this.userService.usersArray[i].name && elem.name !== findUser) {
+					// Проверка на количество игроков
+			if (this.userService.choiceUsersToGame.length < 3) {
+				if(findUser !== undefined) {
+					this.userService.choiceUsersToGame.push(findUser);
+				}
+				else this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
 			}
-			else this.userService.choiceUsersToGame.push(this.userService.usersArray[i])
+			else {
+				this.userService.choiceUsersToGame[0].active = false;
+				this.userService.choiceUsersToGame.shift();
+				if(findUser !== undefined) {
+					this.userService.choiceUsersToGame.push(findUser);
+				}
+				else this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
+			};	
+				// }
+				// else console.log("уже игрок есть такой");
+			// });
 		}
 		else {
-			this.userService.choiceUsersToGame.shift();
+			
 			if(findUser !== undefined) {
-				this.userService.choiceUsersToGame.push(findUser);
+				this.userService.choiceUsersToGame.push(findUser);				
 			}
-			else this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
-		};
+			else {
+				this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);	
+			}
+		}
 		console.log(this.userService.choiceUsersToGame);
-	};
 
+	};
 
 	public Game_501() {
 		this.choice_501 = true;
@@ -97,20 +117,27 @@ export class RegAppComponent implements OnInit {
 	};
 
 	public search(value) {
-		console.log(value);
-		console.log(this.userService.usersArray);
 		this.userService.usersArray.filter(i => {
-			if (value == i.name) {
+			if ((value) == i.name) {
 				return this.findName = i;
 			}
 			// be created
-			else console.log("Нет такого игрока");
 		});
 	};
 	
 	public findUser() {
 		var i = undefined;
-		var findUser = this.findName;	
+		var findUser = this.findName;
+		findUser.active = true;	
 		this.playerChoice(i, findUser);		
+	};
+
+	//  cange color active User field
+	public changeColor(i) {
+		if(this.userService.usersArray[i].active == false) {
+			this.userService.usersArray[i].active = true;
+			console.log(this.userService.usersArray[i].active);
+		}
+		else this.userService.usersArray[i].active = false;
 	};
 };

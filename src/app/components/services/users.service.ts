@@ -19,23 +19,28 @@ export class UsersService {
 	public usersArray: UserCard[] = [
 		{
 			name: "Jack",
-			email: "Jack@gmail.com"
+			email: "Jack@gmail.com",
+			active: false
 		},
 		{
 			name: "John",
-			email: "John@gmail.com"
+			email: "John@gmail.com",
+			active: false
 		},
 		{
 			name: "Timmy",
-			email: "Timmy@gmail.com"
+			email: "Timmy@gmail.com",
+			active: false
 		},
 		{
 			name: "Alice",
-			email: "Alice@gmail.com"
+			email: "Alice@gmail.com",
+			active: false
 		},
 		{
 			name: "Brad",
-			email: "Brad@gmail.com"
+			email: "Brad@gmail.com",
+			active: false
 		}
 	];
 
