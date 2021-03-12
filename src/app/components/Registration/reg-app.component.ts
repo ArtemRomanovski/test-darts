@@ -21,7 +21,6 @@ export class RegAppComponent implements OnInit {
 	public choice_501: boolean = false;
 	public choice_301: boolean = false;
 	public findName;
-	// public serch: string;
 
 	constructor(public userService: UsersService) {};
 
@@ -85,16 +84,14 @@ export class RegAppComponent implements OnInit {
 			// });
 		}
 		else {
-			
 			if(findUser !== undefined) {
 				this.userService.choiceUsersToGame.push(findUser);				
 			}
 			else {
 				this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);	
-			}
-		}
+			};
+		};
 		console.log(this.userService.choiceUsersToGame);
-
 	};
 
 	public Game_501() {
@@ -120,8 +117,7 @@ export class RegAppComponent implements OnInit {
 		this.userService.usersArray.filter(i => {
 			if ((value) == i.name) {
 				return this.findName = i;
-			}
-			// be created
+			};
 		});
 	};
 	
