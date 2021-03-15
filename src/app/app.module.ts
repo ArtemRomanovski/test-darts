@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 import { RegAppComponent } from "./components/Registration/reg-app.component";
 import { LogoComponent } from "./components/logo/logo.component";
 import { GamePageComponent } from "./components/game-page/game-page.component";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
 	declarations: [
@@ -19,6 +20,7 @@ import { GamePageComponent } from "./components/game-page/game-page.component";
 		AppRoutingModule,
 		FormsModule,
 		ReactiveFormsModule,
+		FontAwesomeModule
 	],
 	providers: [RegAppComponent],
 	bootstrap: [AppComponent]

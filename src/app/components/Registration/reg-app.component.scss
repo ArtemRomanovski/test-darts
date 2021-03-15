@@ -15,29 +15,15 @@
 			width: 300px;
 			height: 40px;
 		};
-		input:hover {
-			transition: background 300ms ease-in 0ms;
-			box-shadow: inset 2px 5px 5px -5px #005eff;
-		};
 
 		.form-group {
 			.ng-invalid.ng-touched {
 				border: 1px solid red;
-				box-shadow: inset 2px 5px 5px -5px red;
+				box-shadow: inset 0px 0px 10px -2px red	;
 			};
 			.form-control {
 				border: none;
 				border-radius: 3px;
-			};
-			.alert {
-				margin-top: 1px;
-				padding: 10px 5px;
-				border: 1px solid rgb(209, 194, 194);
-				border-radius: 3px;
-			};
-			.alert-danger {
-				color: rgb(184, 56, 56);
-				background-color: #fdbcbc;
 			};
 		};
 
@@ -88,11 +74,11 @@
 		justify-content: space-between;
 		margin-bottom: 3rem;
 
-		.search_box {
+		.choice__user_box {
 			width: 100%;
 			display: inline-block;
 		
-			.search_form {
+			.header_user_box {
 				width: 100%;
 				display: flex;
 				justify-content: space-between;
@@ -102,78 +88,94 @@
 					display: flex;
 					justify-content: space-between;
 
-					.search_field {
-						position: absolute;
-						width: 189px;
-						margin: .5rem .5rem 1rem 0;
-						padding: 0 .5rem;
-					};
-					.search_button {
-						background: url("../../../assets/1.png") 100% 100% no-repeat;
-						background-size: contain;
-						width: 46px;
-						height: 40px;
+					.search_box {
 						position: relative;
-						top: 7px;
-						left: 143px;					
-					};			
-					.add_new-player {
-						width: 50%;
-						margin: .5rem 0 1rem .5rem;
+
+						.search_input {
+							top: 0;
+							left: 0;
+							width: 100%;
+							border-radius: 3px;
+							font-size: 18px;
+							padding: 0 .5rem;
+							padding-right: 39px;
+						};
+						.search_button {
+							position: absolute;
+							top: 19px;
+							right: 13px;
+							z-index: 1;
+							cursor: pointer;
+						};			
 					};
-				}
-				
+				};
+				.add_new-player {
+					width: 100%;
+					margin-left: 4px;
+				};
+			};
+
+			.alert {
+				padding: 10px;
 			};
 		};
 		
-		.user_box {
-			width: 100%;		
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			flex-wrap: wrap;
-			padding: .5rem;
-			margin-bottom: .2rem;
-			background-color: #ffffff;
-			font-size: 12px;
-			cursor: pointer;
+		ul {
+			margin-top: 8px;
 			
-			.name_field {
-				width: 40%;
-			};
-			
-			.email_field {
-				width: 40%;
-			};
-			
-			.delete_user {
+			.user_box {
+				width: 100%;		
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				padding: .5rem;
+				margin-bottom: .2rem;
+				background-color: #ffffff;
+				font-size: 12px;
 				cursor: pointer;
+				
+				.name_field {
+					width: 40%;
+				};
+				
+				.email_field {
+					width: 40%;
+				};
+				
+				.delete_user {
+					cursor: pointer;
+				};
 			};
-		};
+			
+			.user_box:hover {
+				background-color: #ddeeff;
+				transition: background 300ms ease-in 0ms;
+				box-shadow: inset -5px 0 5px -5px #00ffff;
+			};
+			
+			.user_box:active, :focus, :visited {
+				background-color: rgb(170, 205, 253);
+				box-shadow: inset -5px 0 5px -5px rgb(164, 151, 255);
+			};
+			
+			.active {
+				// background-color: rgb(170, 205, 253);
+				background-color: rgb(177, 253, 229);
+				box-shadow: inset -5px 0 5px -5px rgb(164, 151, 255);
+			};		
 
-		.user_box:hover {
-			background-color: #ddeeff;
-			transition: background 300ms ease-in 0ms;
-			box-shadow: inset -5px 0 5px -5px #00ffff;
+			.focus {
+				background: cha#0f90e0;
+			};
+			
 		};
-
-		.user_box:active, :focus, :visited {
-			background-color: rgb(115, 173, 255);
-			box-shadow: inset -5px 0 5px -5px rgb(164, 151, 255);
-		};
-
-		.active {
-			background-color: rgb(170, 205, 253);
-			box-shadow: inset -5px 0 5px -5px rgb(164, 151, 255);
-		}
-
-		.focus {
-			background: cha#0f90e0;
-		};
+		
 	};
 };
 
-.choose_game__buttom {
+
+.choice_game__button {
 	width: 100px;
 	height: 100px;
 	border: 0px;
@@ -181,28 +183,23 @@
 	background-color: #ffffff;
 	margin-right: 20px;
 	font-size: 39px;
+	
+};
 
-	&:hover {
-		background-color: #ddeeff;
-		transition: background 300ms ease-in 0ms;
-		box-shadow: inset -5px 0 5px -5px #ffffff;
-	};
-
-	&:active {
-		background-color: #ddeeff;
-	};
+.choice_game {
+	background-color: rgb(170, 205, 253);
 };
 
 .game_button__box {
 	margin-top: 2rem;
-
+	
 	.game_button {
 		bottom: 5rem;
 		background-color: #37bf97;
 		color: #b3e2d2;
 	};
-
-	.game_button:focus, .game_button:hover {
+	
+	.game_button:focus, :hover {
 		bottom: 5rem;
 		background-color: #44f1bd;
 		color: #72a493;
@@ -210,3 +207,17 @@
 		box-shadow: inset -5px 0 5px -5px #37bf97;
 	};
 };
+
+.alert {
+	margin-top: 1px;
+	padding: 10px 5px;
+	border: 1px solid rgb(209, 194, 194);
+	border-radius: 3px;
+};
+
+.alert-danger {
+	color: rgb(184, 56, 56);
+	background-color: #fdbcbc;
+};
+
+

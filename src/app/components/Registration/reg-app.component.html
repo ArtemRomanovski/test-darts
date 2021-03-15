@@ -73,31 +73,39 @@ class="reg-app__container col-w">
 		<div class="main_box">
 			<div class="choice-page">
 				<!-- Search field -->
-				<div class="search_box">
+				<div class="choice__user_box">
 					<p class="col-w">
 						Select players
 					</p>
-					<div class="search_form">
+					<div class="header_user_box">
 						<form>
-							<input 
-								#searchInput 
-								(input)="search(searchInput.value)" 
-								(ngModelChange)="search()"
-								class="search_field field" 
-								type="text" 
-								placeholder="Search">
-							<button 
-								class="search_button add"
-								(click)="findUser()">
-							</button>
-							<button 
-								(click)="toggleCards()" 
-								class="add_new-player add">
-								New player
-							</button>
+							<div class="search_box">
+								<input 
+									#searchInput="ngModel"
+									(input)="search(searchInput.value)" 
+									(change)="findUser(searchInput)"
+									ngModel name="searchInput"
+									id="searchInput"
+									class="search_input field" 
+									type="text" 
+									placeholder="Search">
+								<fa-icon [icon]="searchIcon" 
+									class="search_button"
+									(click)="findUser()">
+								</fa-icon>
+							</div>
 						</form>
+						<button 
+							(click)="toggleCards()" 
+							class="add_new-player add">
+							New player
+						</button>
+					</div>
+					<div 
+						*ngIf="showErr == true" 
+						class="alert alert-danger">
 						<div>
-							
+							Нет игрока с таким именем
 						</div>
 					</div>
 				</div>
@@ -125,12 +133,14 @@ class="reg-app__container col-w">
 			<div>
 				<button 
 					(click)="Game_501()" 
-					class="choose_game__buttom">
+					class="choice_game__button"
+					[class.choice_game]="choice_501 == true">
 					501
 				</button>
 				<button 
 					(click)="Game_301()" 
-					class="choose_game__buttom">
+					class="choice_game__button"
+					[class.choice_game]="choice_301 == true">
 					301
 				</button>
 			</div>

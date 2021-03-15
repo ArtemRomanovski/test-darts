@@ -1,5 +1,6 @@
 import { isNgTemplate } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { UserCard } from "../models/user";
 import { UsersService } from "../services/users.service";
 
@@ -21,6 +22,8 @@ export class RegAppComponent implements OnInit {
 	public choice_501: boolean = false;
 	public choice_301: boolean = false;
 	public findName;
+	public searchIcon = faSearch
+	public showErr: boolean = false;
 
 	constructor(public userService: UsersService) {};
 
@@ -51,6 +54,7 @@ export class RegAppComponent implements OnInit {
 	// change registr page
 	public toggleCards() {
 		this.toggle = !this.toggle;
+		this.showErr = false;
 	};
 
 	public togglePage() {
@@ -96,12 +100,12 @@ export class RegAppComponent implements OnInit {
 
 	public Game_501() {
 		this.choice_501 = true;
-		this.choice_301 = false;
+		this.choice_301 = false;		
 	};
 
 	public Game_301() {
-		this.choice_501 = false;
 		this.choice_301 = true;
+		this.choice_501 = false;
 	};
 
 	// Checking the selection of all players and the type of game 
@@ -114,18 +118,31 @@ export class RegAppComponent implements OnInit {
 	};
 
 	public search(value) {
-		this.userService.usersArray.filter(i => {
+		if(value == ""){
+			this.showErr = false;			
+		};
+		
+		this.userService.usersArray.find(i => {
 			if ((value) == i.name) {
 				return this.findName = i;
+			}
+			else {
+				return this.findName = undefined;
 			};
-		});
+		});		
 	};
 	
-	public findUser() {
-		var i = undefined;
-		var findUser = this.findName;
-		findUser.active = true;	
-		this.playerChoice(i, findUser);		
+	public findUser(value) {		
+		if(this.findName == undefined) {
+			this.showErr = true;
+		}	
+		if(this.findName !== undefined){
+			var i = undefined;
+			var findUser = this.findName;
+			findUser.active = true;	
+			this.playerChoice(i, findUser);	
+			this.showErr = false;
+		};
 	};
 
 	//  cange color active User field
