@@ -31,89 +31,23 @@
 				</div>
 				<div class="main_box__players_box flex-r">
 					<!-- 1 user -->
-					<div class="players_box__1-player flex-r">
-						<div>
-							<!-- 1 Dart -->
-							<input 
-								[(ngModel)]="_User1_dart_1" 
-								type="number"
-								placeholder="0">
-							<button (click)="_User_1_addDart_1x1(_User1_dart_1)" class="_1">1x</button>
-							<button (click)="_User_1_addDart_1x2(_User1_dart_1)" class="_2">2x</button>
-							<button (click)="_User_1_addDart_1x3(_User1_dart_1)" class="_3">3x</button>
-						</div>
-						<div>
-							<!-- 2 Dart -->
-							<input [(ngModel)]="_User1_dart_2" type="number"
-							placeholder="0">
-							<button (click)="_User_1_addDart_2x1(_User1_dart_2)" class="_1">1x</button>
-							<button (click)="_User_1_addDart_2x2(_User1_dart_2)" class="_2">2x</button>
-							<button (click)="_User_1_addDart_2x3(_User1_dart_2)" class="_3">3x</button>
-						</div>
-						<div>
-							<!-- 3 Dart -->
-							<input [(ngModel)]="_User1_dart_3" type="number"
-							placeholder="0">
-							<button (click)="_User_1_addDart_3x1(_User1_dart_3)" class="_1">1x</button>
-							<button (click)="_User_1_addDart_3x2(_User1_dart_3)" class="_2">2x</button>
-							<button (click)="_User_1_addDart_3x3(_User1_dart_3)" class="_3">3x</button>
-						</div>
-					</div>
-
-					<!-- 2 user -->
-					<div class="players_box__2-player flex-r">
-						<div>
-							<!--  user-field -->
-							<input [(ngModel)]="_User2_dart_1" type="number"
-							placeholder="0">
-							<button (click)="_User_2_addDart_1x1(_User2_dart_1)" class="_1">1x</button>
-							<button (click)="_User_2_addDart_1x2(_User2_dart_1)" class="_2">2x</button>
-							<button (click)="_User_2_addDart_1x3(_User2_dart_1)" class="_3">3x</button>
-						</div>
-						<div>
-							<!--  user-field -->
-							<input [(ngModel)]="_User2_dart_2" type="number"
-							placeholder="0">
-							<button (click)="_User_2_addDart_2x1(_User2_dart_2)" class="_1">1x</button>
-							<button (click)="_User_2_addDart_2x2(_User2_dart_2)" class="_2">2x</button>
-							<button (click)="_User_2_addDart_2x3(_User2_dart_2)" class="_3">3x</button>
-						</div>
-						<div>
-							<!--  user-field -->
-							<input [(ngModel)]="_User2_dart_3" type="number"
-							placeholder="0">
-							<button (click)="_User_2_addDart_3x1(_User2_dart_3)" class="_1">1x</button>
-							<button (click)="_User_2_addDart_3x2(_User2_dart_3)" class="_2">2x</button>
-							<button (click)="_User_2_addDart_3x3(_User2_dart_3)" class="_3">3x</button>
-						</div>
-					</div>
-
-					<!-- 3 user -->
-					<div class="players_box__3-player flex-r">
-						<div>
-							<!-- 3 user-field -->
-							<input [(ngModel)]="_User3_dart_1" type="number"
-							placeholder="0">
-							<button (click)="_User_3_addDart_1x1(_User3_dart_1)" class="_1">1x</button>
-							<button (click)="_User_3_addDart_1x2(_User3_dart_1)" class="_2">2x</button>
-							<button (click)="_User_3_addDart_1x3(_User3_dart_1)" class="_3">3x</button>
-						</div>
-						<div>
-							<!-- 3 user-field -->
-							<input [(ngModel)]="_User3_dart_2" type="number"
-							placeholder="0">
-							<button (click)="_User_3_addDart_2x1(_User3_dart_2)" class="_1">1x</button>
-							<button (click)="_User_3_addDart_2x2(_User3_dart_2)" class="_2">2x</button>
-							<button (click)="_User_3_addDart_2x3(_User3_dart_2)" class="_3">3x</button>
-						</div>
-						<div>
-							<!-- 3 user-field -->
-							<input [(ngModel)]="_User3_dart_3" type="number"
-							placeholder="0">
-							<button (click)="_User_3_addDart_3x1(_User3_dart_3)" class="_1">1x</button>
-							<button (click)="_User_3_addDart_3x2(_User3_dart_3)" class="_2">2x</button>
-							<button (click)="_User_3_addDart_3x3(_User3_dart_3)" class="_3">3x</button>
-						</div>
+					<!-- <div class="players_box__1-player flex-r"> -->
+					<div 
+						*ngFor="let user of userDartValue; let idxUser = index">
+							<div 
+								class="players_box__1-player flex-r"
+								*ngFor="let darts of user; let idxDart = index">
+									<input 
+										[(ngModel)]="darts.dart"
+										type="number"
+										placeholder="0">
+											<button 
+											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=1)" class="_1">1x</button>
+											<button 
+											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=2)" class="_2">2x</button>
+											<button 
+											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=3)" class="_3">3x</button>	
+							</div>
 					</div>
 				</div>
 			</div>
@@ -130,7 +64,7 @@
 				Winner {{winnerUser}}!
 			</div>
 		</div>
-		<div *ngIf="gameOver.draw === true">
+		<div *ngIf="gameOver.draw_20 === true">
 			<div class="alert alert-winner col-w">
 				Draw! Winner - {{winnerUser}}!
 			</div>
@@ -144,6 +78,12 @@
 		*ngIf="impossobility.status === true">
 			<div class="alert alert-winner col-w">
 				{{impossobility.user}} scored {{impossobility.point}} point(s) - {{impossobility.user}} cannot win by doubling!
+			</div>
+		</div>
+		<div 
+		*ngIf="gameOver.draw_30 === true">
+			<div class="alert alert-winner col-w">
+				Draw!
 			</div>
 		</div>
 	</div>

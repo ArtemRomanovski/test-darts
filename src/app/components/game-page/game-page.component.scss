@@ -59,6 +59,11 @@
 			border-top-right-radius: 18px;
 			border-bottom-right-radius: 18px;
 		};
+
+		.activeBtn {
+			background-color: #4d5061;
+			color: #ffffff;
+		}
 	};
 
 	.alert-winner {
@@ -87,7 +92,7 @@
 			display: flex;
 			justify-content: flex-end;
 		};
-		
+
 		.players_box__3-player {
 			display: flex;
 			justify-content: flex-end;
