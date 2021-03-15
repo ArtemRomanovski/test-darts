@@ -21,7 +21,7 @@ export class GamePageComponent implements OnInit {
 	public buttonActive_x2: boolean = false;
 	public buttonActive_x3: boolean = false;
 	public countStep: number = 1;	// Count Step
-	// Массив с попаданиями с трёх полей каждоко игрока
+	// An array with points hit for the current round
 	public currantPointsArray = [
 		[
 			{"dart": 0},
@@ -39,22 +39,22 @@ export class GamePageComponent implements OnInit {
 			{"dart": 0},
 		],	
 	];
-	// Временный массив для умножения
+	// Temporary array for multiplication
 	public userDartValue = [
 		[
-			{"dart": undefined},
-			{"dart": undefined},
-			{"dart": undefined},
+			{"dart": undefined, "active_1": true, "active_2": false, "active_3": false},
+			{"dart": undefined, "active_1": true, "active_2": false, "active_3": false},
+			{"dart": undefined, "active_1": true, "active_2": false, "active_3": false}
 		],	
 		[
-			{"dart": undefined},
-			{"dart": undefined},
-			{"dart": undefined},
+			{"dart": undefined, "active_1": true, "active_2": false, "active_3": false},
+			{"dart": undefined, "active_1": true, "active_2": false, "active_3": false},
+			{"dart": undefined, "active_1": true, "active_2": false, "active_3": false}
 		],	
 		[
-			{"dart": undefined},
-			{"dart": undefined},
-			{"dart": undefined},
+			{"dart": undefined, "active_1": true, "active_2": false, "active_3": false},
+			{"dart": undefined, "active_1": true, "active_2": false, "active_3": false},
+			{"dart": undefined, "active_1": true, "active_2": false, "active_3": false}
 		],	
 	];
 	public titleStartInfo: string;	// starting info title
@@ -118,6 +118,7 @@ export class GamePageComponent implements OnInit {
 		console.log(this.currantPointsArray);
 	};
 
+	// clearing values into Input
 	public resetInput() {
 		this.userDartValue.filter((i) => {
 			this.userDartValue.filter((j, jdx) => {
@@ -126,13 +127,40 @@ export class GamePageComponent implements OnInit {
 		});
 	};
 
+	// Myltiplying the value and changing the color of the active button
 	public currantHitPoints(inputValue, idxUser, idxDart, factor) {
 		let result = inputValue*factor;
 		if(inputValue !== undefined) {
+			if(factor == 1){
+				this.userDartValue[idxUser][idxDart].active_1 = true;
+				this.userDartValue[idxUser][idxDart].active_2 = false;
+				this.userDartValue[idxUser][idxDart].active_3 = false;
+			};
+			if(factor == 2){
+				this.userDartValue[idxUser][idxDart].active_1 = false;
+				this.userDartValue[idxUser][idxDart].active_2 = true;
+				this.userDartValue[idxUser][idxDart].active_3 = false;
+			};
+			if(factor == 3){
+				this.userDartValue[idxUser][idxDart].active_1 = false;
+				this.userDartValue[idxUser][idxDart].active_2 = false;
+				this.userDartValue[idxUser][idxDart].active_3 = true;
+			};			
 			this.userDartValue[idxUser][idxDart].dart = result; 
 			console.log(this.userDartValue[idxUser][idxDart].dart);			 
 			console.log(`Очки - ${inputValue}`, `\nИгрок - ${idxUser}`,`\nИндекс(номер дротика) - ${idxDart}`, `\nМножитель - ${factor}`, `\nРезультат - ${result}`,`\n`,this.userDartValue[idxUser]);
 		};
+	};
+
+	// Reset color Btn
+	public ResetActiveBtn() {
+		this.userDartValue.filter(i => {
+			for(let j=0; j<3; j++) {
+				i[j].active_1 = true;
+				i[j].active_2 = false;
+				i[j].active_3 = false;
+			};
+		});
 	};
 
 	// addition of points of three darts
@@ -154,6 +182,7 @@ export class GamePageComponent implements OnInit {
 		this.push();
 		this.sumPoits();
 		this.addResultPointToPage();
+		this.ResetActiveBtn();
 		// title info
 		this.titleStepInfo = `Текущие очки попаданий:\n${this.userService.usersGameArray[0].name}: ${(this.userService.currantTotalPointsArray[0].totalPoint)} (${this.currantPointsArray[0][0].dart}+${this.currantPointsArray[0][1].dart}+${this.currantPointsArray[0][2].dart})\n${this.userService.usersGameArray[1].name}: ${(this.userService.currantTotalPointsArray[1].totalPoint)} (${this.currantPointsArray[1][0].dart}+${this.currantPointsArray[1][1].dart}+${this.currantPointsArray[1][2].dart})\n${this.userService.usersGameArray[2].name}: ${(this.userService.currantTotalPointsArray[2].totalPoint)} (${this.currantPointsArray[2][0].dart}+${this.currantPointsArray[2][1].dart}+${this.currantPointsArray[2][2].dart})`;
 		console.log(this.titleStepInfo);

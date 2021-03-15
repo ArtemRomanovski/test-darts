@@ -42,10 +42,13 @@
 										type="number"
 										placeholder="0">
 											<button 
+											[class.activeBtn]="darts.active_1 === true"
 											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=1)" class="_1">1x</button>
 											<button 
+											[class.activeBtn]="darts.active_2 === true"
 											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=2)" class="_2">2x</button>
 											<button 
+											[class.activeBtn]="darts.active_3 === true"
 											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=3)" class="_3">3x</button>	
 							</div>
 					</div>
