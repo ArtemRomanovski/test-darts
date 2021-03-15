@@ -36,21 +36,24 @@
 							<!-- 1 Dart -->
 							<input 
 								[(ngModel)]="_User1_dart_1" 
-								type="number">
+								type="number"
+								placeholder="0">
 							<button (click)="_User_1_addDart_1x1(_User1_dart_1)" class="_1">1x</button>
 							<button (click)="_User_1_addDart_1x2(_User1_dart_1)" class="_2">2x</button>
 							<button (click)="_User_1_addDart_1x3(_User1_dart_1)" class="_3">3x</button>
 						</div>
 						<div>
 							<!-- 2 Dart -->
-							<input [(ngModel)]="_User1_dart_2" type="number">
+							<input [(ngModel)]="_User1_dart_2" type="number"
+							placeholder="0">
 							<button (click)="_User_1_addDart_2x1(_User1_dart_2)" class="_1">1x</button>
 							<button (click)="_User_1_addDart_2x2(_User1_dart_2)" class="_2">2x</button>
 							<button (click)="_User_1_addDart_2x3(_User1_dart_2)" class="_3">3x</button>
 						</div>
 						<div>
 							<!-- 3 Dart -->
-							<input [(ngModel)]="_User1_dart_3" type="number">
+							<input [(ngModel)]="_User1_dart_3" type="number"
+							placeholder="0">
 							<button (click)="_User_1_addDart_3x1(_User1_dart_3)" class="_1">1x</button>
 							<button (click)="_User_1_addDart_3x2(_User1_dart_3)" class="_2">2x</button>
 							<button (click)="_User_1_addDart_3x3(_User1_dart_3)" class="_3">3x</button>
@@ -61,21 +64,24 @@
 					<div class="players_box__2-player flex-r">
 						<div>
 							<!--  user-field -->
-							<input [(ngModel)]="_User2_dart_1" type="number">
+							<input [(ngModel)]="_User2_dart_1" type="number"
+							placeholder="0">
 							<button (click)="_User_2_addDart_1x1(_User2_dart_1)" class="_1">1x</button>
 							<button (click)="_User_2_addDart_1x2(_User2_dart_1)" class="_2">2x</button>
 							<button (click)="_User_2_addDart_1x3(_User2_dart_1)" class="_3">3x</button>
 						</div>
 						<div>
 							<!--  user-field -->
-							<input [(ngModel)]="_User2_dart_2" type="number">
+							<input [(ngModel)]="_User2_dart_2" type="number"
+							placeholder="0">
 							<button (click)="_User_2_addDart_2x1(_User2_dart_2)" class="_1">1x</button>
 							<button (click)="_User_2_addDart_2x2(_User2_dart_2)" class="_2">2x</button>
 							<button (click)="_User_2_addDart_2x3(_User2_dart_2)" class="_3">3x</button>
 						</div>
 						<div>
 							<!--  user-field -->
-							<input [(ngModel)]="_User2_dart_3" type="number">
+							<input [(ngModel)]="_User2_dart_3" type="number"
+							placeholder="0">
 							<button (click)="_User_2_addDart_3x1(_User2_dart_3)" class="_1">1x</button>
 							<button (click)="_User_2_addDart_3x2(_User2_dart_3)" class="_2">2x</button>
 							<button (click)="_User_2_addDart_3x3(_User2_dart_3)" class="_3">3x</button>
@@ -86,21 +92,24 @@
 					<div class="players_box__3-player flex-r">
 						<div>
 							<!-- 3 user-field -->
-							<input [(ngModel)]="_User3_dart_1" type="number">
+							<input [(ngModel)]="_User3_dart_1" type="number"
+							placeholder="0">
 							<button (click)="_User_3_addDart_1x1(_User3_dart_1)" class="_1">1x</button>
 							<button (click)="_User_3_addDart_1x2(_User3_dart_1)" class="_2">2x</button>
 							<button (click)="_User_3_addDart_1x3(_User3_dart_1)" class="_3">3x</button>
 						</div>
 						<div>
 							<!-- 3 user-field -->
-							<input [(ngModel)]="_User3_dart_2" type="number">
+							<input [(ngModel)]="_User3_dart_2" type="number"
+							placeholder="0">
 							<button (click)="_User_3_addDart_2x1(_User3_dart_2)" class="_1">1x</button>
 							<button (click)="_User_3_addDart_2x2(_User3_dart_2)" class="_2">2x</button>
 							<button (click)="_User_3_addDart_2x3(_User3_dart_2)" class="_3">3x</button>
 						</div>
 						<div>
 							<!-- 3 user-field -->
-							<input [(ngModel)]="_User3_dart_3" type="number">
+							<input [(ngModel)]="_User3_dart_3" type="number"
+							placeholder="0">
 							<button (click)="_User_3_addDart_3x1(_User3_dart_3)" class="_1">1x</button>
 							<button (click)="_User_3_addDart_3x2(_User3_dart_3)" class="_2">2x</button>
 							<button (click)="_User_3_addDart_3x3(_User3_dart_3)" class="_3">3x</button>
@@ -115,6 +124,27 @@
 				class="add">
 				Add
 			</button>
+		</div>
+		<div *ngIf="gameOver.victory_20_Steps === true || gameOver.victory_30_Steps === true">
+			<div class="alert alert-winner col-w">
+				Winner {{winnerUser}}!
+			</div>
+		</div>
+		<div *ngIf="gameOver.draw === true">
+			<div class="alert alert-winner col-w">
+				Draw! Winner - {{winnerUser}}!
+			</div>
+		</div>
+		<div *ngIf="gameOver.additionalRounds === true">
+			<div class="alert alert-winner col-w">
+				Draw! Additional 10 Rounds!
+			</div>
+		</div>
+		<div 
+		*ngIf="impossobility.status === true">
+			<div class="alert alert-winner col-w">
+				{{impossobility.user}} scored {{impossobility.point}} point(s) - {{impossobility.user}} cannot win by doubling!
+			</div>
 		</div>
 	</div>
 	<!-- Блок с именами -->

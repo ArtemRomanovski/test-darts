@@ -17,9 +17,7 @@
 	};
 	
 	.first_field {
-
 		height: 140px;
-
 		display: flex;
 		flex-flow: column;
 		align-items: center;
@@ -27,12 +25,10 @@
 	};
 	
 	.darts_box__main {
-
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-
 		padding: 0 0 3rem;
 		
 		input {
@@ -40,12 +36,10 @@
 			height: 40px;
 			margin: .2rem;
 			margin-right: 0;
-		
 			border: none;
 			border-radius: 3px;
 			border-top-right-radius: 0;
 			border-bottom-right-radius: 0;
-		
 			background-color: #ffffff;
 		};
 
@@ -67,10 +61,15 @@
 		};
 	};
 
+	.alert-winner {
+		text-align: center;
+		padding: 20px;
+		font-size: 28px;
+		font-weight: 700;
+	};
+
 	.main_box__players_box {
-
 		width: 820px;
-
 		display: flex;
 		flex-flow: inherit;
 
@@ -83,10 +82,12 @@
 			display: flex;
 			justify-content: flex-end;
 		};
+
 		.players_box__2-player {
 			display: flex;
 			justify-content: flex-end;
 		};
+		
 		.players_box__3-player {
 			display: flex;
 			justify-content: flex-end;
@@ -119,9 +120,7 @@
 };
 
 .table_box {
-
 	max-width: 900px;
-
 	display: flex;
     flex-flow: column-reverse;
     justify-content: left;
@@ -132,16 +131,13 @@
 		justify-content: right;
 
 		.table_line__step_box {
-
 			padding: 15px;
-
 			display: flex;
 			justify-content: right;
 			align-items: center;
 		};
 
 		.table_line__points_box {
-
 		width: 780px;
 		display: flex;
 		justify-content: space-between;
@@ -157,13 +153,10 @@
 		};
 
 		.table_line__info_box {
-
 			width: 40px;
-
 			display: flex;
 			justify-content: center;
 			align-items: center;
-
 			cursor: pointer;
 		};
 	};
