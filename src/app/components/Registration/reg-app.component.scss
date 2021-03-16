@@ -17,10 +17,12 @@
 		};
 
 		.form-group {
+
 			.ng-invalid.ng-touched {
 				border: 1px solid red;
 				box-shadow: inset 0px 0px 10px -2px red	;
 			};
+
 			.form-control {
 				border: none;
 				border-radius: 3px;
@@ -72,7 +74,7 @@
 		display: flex;
 		flex-flow: column;
 		justify-content: space-between;
-		margin-bottom: 5rem;
+		margin-bottom: 4rem;
 
 		.choice__user_box {
 			width: 100%;
@@ -100,15 +102,17 @@
 							padding: 0 .5rem;
 							padding-right: 39px;
 						};
+
 						.search_button {
 							position: absolute;
-							top: 19px;
+							top: 12px;
 							right: 13px;
 							z-index: 1;
 							cursor: pointer;
 						};			
 					};
 				};
+				
 				.add_new-player {
 					width: 100%;
 					margin-left: 4px;
@@ -188,11 +192,11 @@
 };
 
 .choice_game {
-	background-color: rgb(170, 205, 253);
+	background-color: rgb(177, 253, 229);
 };
 
 .game_button__box {
-	margin-top: 4rem;
+	margin-top: 3rem;
 	
 	.game_button {
 		bottom: 5rem;

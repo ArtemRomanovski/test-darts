@@ -88,10 +88,12 @@ export class UsersService {
 	};
 
 	constructor() { }
+
 	// Add New User
 	public addUser(newUser: UserCard) {
 		this.usersArray.push(newUser);
 	};
+
 	// Remove User
 	public removeUser(name: string) {
 		return this.usersArray = this.usersArray.filter(user => user.name !== name);
@@ -108,7 +110,7 @@ export class UsersService {
 			if(factor == 1){
 				this.userDartValue[idxUser][idxDart].double = false;
 			}
-			console.log(`Очки - ${inputValue}`, `\nИгрок - ${idxUser}`,`\nИндекс(номер дротика) - ${idxDart}`, `\nМножитель - ${factor}`, `\nРезультат - ${result}`,`\n`,this.userDartValue[idxUser]);
+			console.log(`Points - ${inputValue}`, `\nGamer - ${idxUser}`,`\nIndex(dart number) - ${idxDart}`, `\nFactor - ${factor}`, `\nResult - ${result}`,`\n`,this.userDartValue[idxUser]);
 		};
 		if(factor == 1){
 			this.userDartValue[idxUser][idxDart].active_1 = true;

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { from } from "rxjs";
-import { RegAppComponent } from '../Registration/reg-app.component';
-import { UsersService } from '../services/users.service';
+import { RegAppComponent } from "../Registration/reg-app.component";
+import { UsersService } from "../services/users.service";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons"
 
 export interface userGame {
@@ -14,14 +14,15 @@ export interface pointArray {
 };
 
 @Component({
-	selector: 'app-game-page',
-	templateUrl: './game-page.component.html',
-	styleUrls: ['./game-page.component.scss']
+	selector: "app-game-page",
+	templateUrl: "./game-page.component.html",
+	styleUrls: ["./game-page.component.scss"]
 })
 export class GamePageComponent implements OnInit {
 	public buttonActive_x1: boolean = false;
 	public buttonActive_x2: boolean = false;
 	public buttonActive_x3: boolean = false;
+	public gameOverBlockBtn: boolean = false;
 	public infoIcon = faInfoCircle;
 	public countStep: number = 1;	// Count Step
 	public titleStartInfo: string;	// starting info title
@@ -49,6 +50,7 @@ export class GamePageComponent implements OnInit {
 		this.userService.choiceUsersToGame.forEach(i => this.userService.usersGameArray.length = 0);
 		this.userService.choiceUsersToGame.forEach(i => this.userService.usersGameArrayCopy.length = 0);
 		this.userService.resetGameOver();
+		this.gameOverBlockBtn = false;
 	};
 
 	public startGameUser() {
@@ -97,6 +99,7 @@ export class GamePageComponent implements OnInit {
 				i.points = x;
 				this.userService.gameOver.victory_20_Steps = true;
 				this.winnerUser = this.userService.usersGameArray[ind].name;
+				this.gameOverBlockBtn = true;
 			}
 			// alert - cannot win by doubling
 			else {
@@ -142,6 +145,7 @@ export class GamePageComponent implements OnInit {
 					if(i.points == min) {
 					this.userService.gameOver.victory_20_Steps = true;
 					this.winnerUser = i.name;
+					this.gameOverBlockBtn = true;
 					};
 				}
 				else if(temp > 1) {
@@ -160,15 +164,17 @@ export class GamePageComponent implements OnInit {
 					if(i.points == min) {
 					this.userService.gameOver.victory_30_Steps = true;
 					this.winnerUser = i.name;
+					this.gameOverBlockBtn = true;
 					};
 				}
 				else if(temp > 1) {						
 					this.userService.gameOver.draw_30 = true;
+					this.gameOverBlockBtn = true;
 				};
 			});
 		};
 		// Step
-		this.countStep++
+		this.countStep++;
 		this.resetInput();
 	};
 };

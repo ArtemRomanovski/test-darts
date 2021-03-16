@@ -1,5 +1,4 @@
-
-<div>
+<div style="min-height: 101vh;">
 	<div>
 		<div class="header_box">
 			<app-logo></app-logo>
@@ -10,8 +9,7 @@
 	</div>
 	<div class="darts_box">
 		<div class="darts_box__main col-w">
-			<!-- Блок с именами -->
-			<div class="usersName_box col-w">
+			<div class="users_name col-w">
 				<div 
 					class="usersName_box__userName" 
 					*ngFor="let user of userService.choiceUsersToGame">
@@ -34,20 +32,20 @@
 					<div 
 						*ngFor="let user of this.userService.userDartValue; let idxUser = index">
 							<div 
-								class="players_box__1-player flex-r"
+								class="players_box flex-r"
 								*ngFor="let darts of user; let idxDart = index">
 									<input 
 										[(ngModel)]="darts.dart"
 										type="number">
 											<button 
 											[class.activeBtn]="darts.active_1 === true"
-											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=1)" class="_1">1x</button>
+											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=1)">1x</button>
 											<button 
 											[class.activeBtn]="darts.active_2 === true"
-											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=2)" class="_2">2x</button>
+											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=2)" class="btn_2">2x</button>
 											<button 
 											[class.activeBtn]="darts.active_3 === true"
-											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=3)" class="_3">3x</button>	
+											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=3)" class="btn_3">3x</button>	
 							</div>
 					</div>
 				</div>
@@ -56,7 +54,8 @@
 		<div class="darts_box__button">
 			<button 
 				(click)="addStep()" 
-				class="add">
+				class="add"
+				[disabled]="gameOverBlockBtn === true">
 				Add
 			</button>
 		</div>
@@ -104,12 +103,10 @@
 			</div>
 		</div>
 	</div>
-	<!-- Блок с именами -->
 	<div class="usersName_box col-w">
 		<div 
 			class="usersName_box__userName" 
 			*ngFor="let user of userService.choiceUsersToGame">
-			<!-- Имя игрока -->
 			{{user?.name}}
 		</div>
 	</div>
@@ -117,12 +114,10 @@
 	class="table_box col-w" 
 	id="table_box">
 		<div class="table_line">
-			<!-- Step -->
 			<div>
 				<div class="table_line__step_box col-g">
 				</div>
 			</div>
-			<!-- Main info -->
 			<div>
 				<div class="table_line__points_box col-g">
 					<p 
@@ -131,24 +126,20 @@
 				</p>
 				</div>
 			</div>
-			<!-- Info -->
 			<div 
 				class="table_line__info_box col-w" 
 				[title]="titleStartInfo">
 				<fa-icon [icon]="infoIcon"></fa-icon>
 			</div>
 		</div>
-		<!-- Блок с таблицей (3 части)-->
 		<div 
 		*ngFor="let step of usersRemaningPoints; let idx = index"
 		class="table_line">
-			<!-- Step -->
 			<div>
 				<div class="table_line__step_box col-w">
 					{{usersRemaningPoints[idx][0].step}}
 				</div>
 			</div>
-			<!-- Main info -->
 			<div>
 				<div class="table_line__points_box col-g">
 					<p>
@@ -162,7 +153,6 @@
 					</p>
 				</div>
 			</div>
-			<!-- Info -->
 			<div 
 			class="table_line__info_box col-w" 
 			[title]="titleStepInfo">

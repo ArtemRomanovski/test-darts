@@ -152,7 +152,6 @@ export class RegAppComponent implements OnInit {
 	public changeColor(i) {
 		if(this.userService.usersArray[i].active == false) {
 			this.userService.usersArray[i].active = true;
-			// console.log(this.userService.usersArray[i].active);
 		}
 		else this.userService.usersArray[i].active = false;
 	};
