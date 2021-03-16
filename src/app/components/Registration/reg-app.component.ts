@@ -13,19 +13,19 @@ import { UsersService } from "../services/users.service";
 
 export class RegAppComponent implements OnInit {
 	public regExpEmail = [/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.)+([a-zA-Z0-9-]+)*$/];
-	public maxLength: number = 20;
-	public name: string = "";
-	public email: string;
-	public toggle: boolean = true;
+	public showErr_selectPlayers: boolean = false;
+	public showErr_chooseGame: boolean = false;
 	public toggleGamePage: boolean = false;
-	public disabled: string = "";
 	public choice_501: boolean = false;
 	public choice_301: boolean = false;
-	public findName;
-	public searchIcon = faSearch
 	public showErr: boolean = false;
-	public showErr_chooseGame: boolean = false;
-	public showErr_selectPlayers: boolean = false;
+	public toggle: boolean = true;
+	public maxLength: number = 20;
+	public disabled: string = "";
+	public searchIcon = faSearch
+	public name: string = "";
+	public email: string;
+	public findName;
 
 	constructor(public userService: UsersService) {};
 
@@ -64,13 +64,7 @@ export class RegAppComponent implements OnInit {
 	};
 
 	public playerChoice(i: number, findUser: object) {
-		// Проверка пустой ли массив
 		if(this.userService.choiceUsersToGame.length !== 0) {
-			// console.log(this.userService.choiceUsersToGame);
-			// Проверка на одинаковых игроков
-			// this.userService.choiceUsersToGame.forEach((elem, idx) => {
-				// if (elem.name !== this.userService.usersArray[i].name && elem.name !== findUser) {
-					// Проверка на количество игроков
 			if (this.userService.choiceUsersToGame.length < 3) {
 				if(findUser !== undefined) {
 					this.userService.choiceUsersToGame.push(findUser);
@@ -85,9 +79,6 @@ export class RegAppComponent implements OnInit {
 				}
 				else this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
 			};	
-				// }
-				// else console.log("уже игрок есть такой");
-			// });
 		}
 		else {
 			if(findUser !== undefined) {
@@ -97,7 +88,6 @@ export class RegAppComponent implements OnInit {
 				this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);	
 			};
 		};
-		// console.log(this.userService.choiceUsersToGame);
 	};
 
 	public Game_501() {
@@ -135,7 +125,6 @@ export class RegAppComponent implements OnInit {
 		if(value == ""){
 			this.showErr = false;			
 		};
-		
 		this.userService.usersArray.find(i => {
 			if ((value) == i.name) {
 				return this.findName = i;

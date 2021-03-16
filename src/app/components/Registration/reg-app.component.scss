@@ -72,7 +72,7 @@
 		display: flex;
 		flex-flow: column;
 		justify-content: space-between;
-		margin-bottom: 3rem;
+		margin-bottom: 5rem;
 
 		.choice__user_box {
 			width: 100%;
@@ -160,7 +160,6 @@
 			};
 			
 			.active {
-				// background-color: rgb(170, 205, 253);
 				background-color: rgb(177, 253, 229);
 				box-shadow: inset -5px 0 5px -5px rgb(164, 151, 255);
 			};		
@@ -168,12 +167,14 @@
 			.focus {
 				background: cha#0f90e0;
 			};
-			
 		};
-		
+	};
+
+	.choose_game {
+		margin-bottom: 1rem;
+		font-size: 22px;
 	};
 };
-
 
 .choice_game__button {
 	width: 100px;
@@ -183,7 +184,7 @@
 	background-color: #ffffff;
 	margin-right: 20px;
 	font-size: 39px;
-	
+	font-weight: 600;
 };
 
 .choice_game {
@@ -191,7 +192,7 @@
 };
 
 .game_button__box {
-	margin-top: 2rem;
+	margin-top: 4rem;
 	
 	.game_button {
 		bottom: 5rem;
@@ -219,5 +220,6 @@
 	color: rgb(184, 56, 56);
 	background-color: #fdbcbc;
 };
+
 
 

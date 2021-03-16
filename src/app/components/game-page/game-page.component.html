@@ -1,3 +1,4 @@
+
 <div>
 	<div>
 		<div class="header_box">
@@ -30,17 +31,14 @@
 					</p>
 				</div>
 				<div class="main_box__players_box flex-r">
-					<!-- 1 user -->
-					<!-- <div class="players_box__1-player flex-r"> -->
 					<div 
-						*ngFor="let user of userDartValue; let idxUser = index">
+						*ngFor="let user of this.userService.userDartValue; let idxUser = index">
 							<div 
 								class="players_box__1-player flex-r"
 								*ngFor="let darts of user; let idxDart = index">
 									<input 
 										[(ngModel)]="darts.dart"
-										type="number"
-										placeholder="0">
+										type="number">
 											<button 
 											[class.activeBtn]="darts.active_1 === true"
 											(click)="currantHitPoints(darts.dart, idxUser, idxDart, factor=1)" class="_1">1x</button>
@@ -62,7 +60,7 @@
 				Add
 			</button>
 		</div>
-		<div *ngIf="gameOver.victory_20_Steps === true || gameOver.victory_30_Steps === true">
+		<div *ngIf="this.userService.gameOver.victory_20_Steps === true || this.userService.gameOver.victory_30_Steps === true">
 			<div class="alert alert-winner col-w">
 				<p>
 					Game Over!
@@ -72,7 +70,7 @@
 				</p>
 			</div>
 		</div>
-		<div *ngIf="gameOver.draw_20 === true">
+		<div *ngIf="this.userService.gameOver.draw_20 === true">
 			<div class="alert alert-winner col-w">
 				<p>
 					Game Over!
@@ -82,7 +80,7 @@
 				</p>
 			</div>
 		</div>
-		<div *ngIf="gameOver.draw_30 === true">
+		<div *ngIf="this.userService.gameOver.draw_30 === true">
 			<div class="alert alert-winner col-w">
 				<p>
 					Game Over!
@@ -92,7 +90,7 @@
 				</p>
 			</div>
 		</div>
-		<div *ngIf="gameOver.additionalRounds === true">
+		<div *ngIf="this.userService.gameOver.additionalRounds === true">
 			<div class="alert alert-winner col-w">
 				<p>
 					Draw! Additional 10 Rounds!
@@ -137,7 +135,7 @@
 			<div 
 				class="table_line__info_box col-w" 
 				[title]="titleStartInfo">
-				&#9786;
+				<fa-icon [icon]="infoIcon"></fa-icon>
 			</div>
 		</div>
 		<!-- Блок с таблицей (3 части)-->
@@ -168,7 +166,7 @@
 			<div 
 			class="table_line__info_box col-w" 
 			[title]="titleStepInfo">
-				&#9786;
+			<fa-icon [icon]="infoIcon"></fa-icon>
 			</div>
 		</div>
 	</div>
