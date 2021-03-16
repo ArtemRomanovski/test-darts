@@ -151,6 +151,23 @@ class="reg-app__container col-w">
 					Start
 				</button>
 			</div>
+				<div
+					class="alert alert-danger" 
+					*ngIf="showErr_chooseGame == true || showErr_selectPlayers == true">
+					<div 
+						*ngIf="showErr_chooseGame == true" >
+							<div>
+								Choose a game
+							</div>
+					</div>
+					<div 
+						*ngIf="showErr_selectPlayers == true"
+						style="margin-top: -1px;"> 
+							<div>
+								Players must be 3. Select players.
+							</div>
+					</div>
+				</div>
 		</div>
 		<div class="empty_box"></div>
 	</div>

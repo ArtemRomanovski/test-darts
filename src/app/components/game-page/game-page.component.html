@@ -64,29 +64,45 @@
 		</div>
 		<div *ngIf="gameOver.victory_20_Steps === true || gameOver.victory_30_Steps === true">
 			<div class="alert alert-winner col-w">
-				Winner {{winnerUser}}!
+				<p>
+					Game Over!
+				</p>
+				<p>
+					Winner {{winnerUser}}!
+				</p>
 			</div>
 		</div>
 		<div *ngIf="gameOver.draw_20 === true">
 			<div class="alert alert-winner col-w">
-				Draw! Winner - {{winnerUser}}!
+				<p>
+					Game Over!
+				</p>
+				<p>
+					Draw! Winner - {{winnerUser}}!
+				</p>
+			</div>
+		</div>
+		<div *ngIf="gameOver.draw_30 === true">
+			<div class="alert alert-winner col-w">
+				<p>
+					Game Over!
+				</p>
+				<p>
+					Draw!
+				</p>
 			</div>
 		</div>
 		<div *ngIf="gameOver.additionalRounds === true">
 			<div class="alert alert-winner col-w">
-				Draw! Additional 10 Rounds!
+				<p>
+					Draw! Additional 10 Rounds!
+				</p>
 			</div>
 		</div>
 		<div 
 		*ngIf="impossobility.status === true">
 			<div class="alert alert-winner col-w">
 				{{impossobility.user}} scored {{impossobility.point}} point(s) - {{impossobility.user}} cannot win by doubling!
-			</div>
-		</div>
-		<div 
-		*ngIf="gameOver.draw_30 === true">
-			<div class="alert alert-winner col-w">
-				Draw!
 			</div>
 		</div>
 	</div>

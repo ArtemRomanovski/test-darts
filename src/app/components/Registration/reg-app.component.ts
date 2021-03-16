@@ -24,6 +24,8 @@ export class RegAppComponent implements OnInit {
 	public findName;
 	public searchIcon = faSearch
 	public showErr: boolean = false;
+	public showErr_chooseGame: boolean = false;
+	public showErr_selectPlayers: boolean = false;
 
 	constructor(public userService: UsersService) {};
 
@@ -64,7 +66,7 @@ export class RegAppComponent implements OnInit {
 	public playerChoice(i: number, findUser: object) {
 		// Проверка пустой ли массив
 		if(this.userService.choiceUsersToGame.length !== 0) {
-			console.log(this.userService.choiceUsersToGame);
+			// console.log(this.userService.choiceUsersToGame);
 			// Проверка на одинаковых игроков
 			// this.userService.choiceUsersToGame.forEach((elem, idx) => {
 				// if (elem.name !== this.userService.usersArray[i].name && elem.name !== findUser) {
@@ -95,7 +97,7 @@ export class RegAppComponent implements OnInit {
 				this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);	
 			};
 		};
-		console.log(this.userService.choiceUsersToGame);
+		// console.log(this.userService.choiceUsersToGame);
 	};
 
 	public Game_501() {
@@ -112,9 +114,21 @@ export class RegAppComponent implements OnInit {
 	public checkStart() {
 		if ((this.userService.choiceUsersToGame.length === 3) && (this.choice_501 === true)) {
 			this.togglePage();
+			this.showErr_selectPlayers = false;
+			this.showErr_chooseGame = false;
 		}
-		else alert("Выберите игру");
-		console.log(this.userService.choiceUsersToGame, this.choice_501 === true);
+		if((this.userService.choiceUsersToGame.length < 3)) {
+			this.showErr_selectPlayers = true;
+		}
+		if((this.userService.choiceUsersToGame.length === 3)) {
+			this.showErr_selectPlayers = false;
+		}
+		if(this.choice_501 === false) {
+			this.showErr_chooseGame = true;
+		}
+		if(this.choice_501 === true) {
+			this.showErr_chooseGame = false;
+		}
 	};
 
 	public search(value) {
@@ -149,7 +163,7 @@ export class RegAppComponent implements OnInit {
 	public changeColor(i) {
 		if(this.userService.usersArray[i].active == false) {
 			this.userService.usersArray[i].active = true;
-			console.log(this.userService.usersArray[i].active);
+			// console.log(this.userService.usersArray[i].active);
 		}
 		else this.userService.usersArray[i].active = false;
 	};
