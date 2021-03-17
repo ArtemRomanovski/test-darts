@@ -5,7 +5,6 @@ import { concat, from } from "rxjs";
 import { UserCard } from "../models/user";
 import { UsersService } from "../services/users.service";
 
-
 @Component({
 	selector: "app-reg-app",
 	templateUrl: "./reg-app.component.html",
@@ -28,13 +27,11 @@ export class RegAppComponent implements OnInit {
 	public name: string = "";
 	public email: string;
 	public findName;
-	public searchInputVal;
 
 	constructor(public userService: UsersService) {};
 
 	ngOnInit() {
 		console.log(this.userService.usersArray);
-
 	};
 
 	// add New User
@@ -123,38 +120,20 @@ export class RegAppComponent implements OnInit {
 		}
 		if(this.choice_501 === true) {
 			this.showErr_chooseGame = false;
-		}
+		};
 	};
-
-	public test(input: HTMLElement) {
-		console.log(this.findUser());
-		
-	}
 
 	public search(value) {
 		this.userService.usersArrayCopy = this.userService.usersArray.filter(key => key.name.toLowerCase().includes(value.toLowerCase()));
 		console.log(this.userService.usersArray);
 		console.log(this.userService.usersArrayCopy);
 
-		// if(value == ""){
-		// 	this.showErr = false;			
-		// }
 		if(this.userService.usersArrayCopy.length == 1){
 			this.findName = this.userService.usersArrayCopy[0];
 		}
 		else {
 			return this.findName = undefined;
 		};
-		
-		
-		// this.userService.usersArrayCopy.find(i => {
-		// 	if ((value.toLowerCase()) == i.name.toLowerCase()) {
-		// 		return this.findName = i;
-		// 	}
-		// 	else {
-		// 		return this.findName = undefined;
-		// 	};
-		// });		
 	};
 
 	public findUser() {				
@@ -177,10 +156,4 @@ export class RegAppComponent implements OnInit {
 		}
 		else this.userService.usersArray[i].active = false;
 	};
-
-
-
-
-
-
 };
