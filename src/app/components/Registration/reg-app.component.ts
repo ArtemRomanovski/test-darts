@@ -1,8 +1,10 @@
 import { isNgTemplate } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { concat, from } from "rxjs";
 import { UserCard } from "../models/user";
 import { UsersService } from "../services/users.service";
+
 
 @Component({
 	selector: "app-reg-app",
@@ -26,11 +28,13 @@ export class RegAppComponent implements OnInit {
 	public name: string = "";
 	public email: string;
 	public findName;
+	public searchInputVal;
 
 	constructor(public userService: UsersService) {};
 
 	ngOnInit() {
 		console.log(this.userService.usersArray);
+
 	};
 
 	// add New User
@@ -47,6 +51,7 @@ export class RegAppComponent implements OnInit {
 			this.userService.addUser(newUser);
 			this.toggle = !this.toggle;
 		};
+		this.search("");
 	};
 
 	public remove(name: string) {
@@ -121,21 +126,38 @@ export class RegAppComponent implements OnInit {
 		}
 	};
 
+	public test(input: HTMLElement) {
+		console.log(this.findUser());
+		
+	}
+
 	public search(value) {
-		if(value == ""){
-			this.showErr = false;			
+		this.userService.usersArrayCopy = this.userService.usersArray.filter(key => key.name.toLowerCase().includes(value.toLowerCase()));
+		console.log(this.userService.usersArray);
+		console.log(this.userService.usersArrayCopy);
+
+		// if(value == ""){
+		// 	this.showErr = false;			
+		// }
+		if(this.userService.usersArrayCopy.length == 1){
+			this.findName = this.userService.usersArrayCopy[0];
+		}
+		else {
+			return this.findName = undefined;
 		};
-		this.userService.usersArray.find(i => {
-			if ((value) == i.name) {
-				return this.findName = i;
-			}
-			else {
-				return this.findName = undefined;
-			};
-		});		
+		
+		
+		// this.userService.usersArrayCopy.find(i => {
+		// 	if ((value.toLowerCase()) == i.name.toLowerCase()) {
+		// 		return this.findName = i;
+		// 	}
+		// 	else {
+		// 		return this.findName = undefined;
+		// 	};
+		// });		
 	};
-	
-	public findUser(value) {		
+
+	public findUser() {				
 		if(this.findName == undefined) {
 			this.showErr = true;
 		}	
@@ -155,4 +177,10 @@ export class RegAppComponent implements OnInit {
 		}
 		else this.userService.usersArray[i].active = false;
 	};
+
+
+
+
+
+
 };

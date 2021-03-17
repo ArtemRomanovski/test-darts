@@ -83,12 +83,13 @@ class="reg-app__container col-w">
 								<input 
 									#searchInput="ngModel"
 									(input)="search(searchInput.value)" 
-									(change)="findUser(searchInput)"
+									(keydown.enter)="findUser()"							
 									ngModel name="searchInput"
 									id="searchInput"
 									class="search_input field" 
 									type="text" 
-									placeholder="Search">
+									placeholder="Search"
+									>
 								<fa-icon [icon]="searchIcon" 
 									class="search_button"
 									(click)="findUser()">
@@ -108,28 +109,49 @@ class="reg-app__container col-w">
 							No player with that name
 						</div>
 					</div>
+				</div>		
+					<ul *ngIf="userService.usersArrayCopy[0] == undefined">
+						<li
+							*ngFor="let user of userService.usersArray; let i = index;" 
+							(click)="playerChoice(i); changeColor(i)"
+							class="user_box field"
+							[class.active]="user.active==true"
+							>
+							<div class="name_field">
+								{{user?.name}}
+							</div>
+							<div class="email_field">
+								{{user?.email}}
+							</div>
+							<div 
+								(click)="remove(user?.name)" 
+								class="delete_user">
+								x
+							</div>
+						</li>
+					</ul>
+					<ul *ngIf="userService.usersArrayCopy[0] !== undefined">
+						<li
+							*ngFor="let user of userService.usersArrayCopy; let i = index;" 
+							(click)="playerChoice(i); changeColor(i)"
+							class="user_box field"
+							[class.active]="user.active==true"
+							>
+							<div class="name_field">
+								{{user?.name}}
+							</div>
+							<div class="email_field">
+								{{user?.email}}
+							</div>
+							<div 
+								(click)="remove(user?.name)" 
+								class="delete_user">
+								x
+							</div>
+						</li>
+					</ul>
 				</div>
-				<ul>
-					<li 
-						*ngFor="let user of userService.usersArray; let i = index;" 
-						(click)="playerChoice(i); changeColor(i)"
-						class="user_box field"
-						[class.active]="user.active==true"
-						>
-						<div class="name_field">
-							{{user?.name}}
-						</div>
-						<div class="email_field">
-							{{user?.email}}
-						</div>
-						<div 
-							(click)="remove(user?.name)" 
-							class="delete_user">
-							x
-						</div>
-					</li>
-				</ul>
-			</div>
+
 			<div class="choose_game col-w">
 				<p>
 					Choose game

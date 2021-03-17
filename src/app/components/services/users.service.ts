@@ -13,6 +13,7 @@ export class UsersService {
 	public currantTotalPointsArray = [];	// Points received
 	public choiceUsersToGame = [];	// Selected Players
 	// Array with fake users
+	public usersArrayCopy = [];
 	public usersArray: UserCard[] = [
 		{
 			name: "Jack",
