@@ -97,7 +97,8 @@ export class UsersService {
 
 	// Remove User
 	public removeUser(name: string) {
-		return this.usersArray = this.usersArray.filter(user => user.name !== name);
+		this.usersArray = this.usersArray.filter(user => user.name !== name);
+		this.usersArrayCopy = this.usersArrayCopy.filter(user => user.name !== name);
 	};
 
 	public currantHitPointsFn(inputValue, idxUser, idxDart, factor) {

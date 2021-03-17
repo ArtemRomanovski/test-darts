@@ -80,9 +80,8 @@ export class RegAppComponent implements OnInit {
 					this.userService.choiceUsersToGame.push(findUser);
 				}
 				else this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
-			};	
-		}
-		else {
+			};			}
+		else {			
 			if(findUser !== undefined) {
 				this.userService.choiceUsersToGame.push(findUser);				
 			}
@@ -94,7 +93,8 @@ export class RegAppComponent implements OnInit {
 
 	public Game_501() {
 		this.choice_501 = true;
-		this.choice_301 = false;		
+		this.choice_301 = false;
+		this.showErr_chooseGame = false;		
 	};
 
 	public Game_301() {
@@ -125,15 +125,12 @@ export class RegAppComponent implements OnInit {
 
 	public search(value) {
 		this.userService.usersArrayCopy = this.userService.usersArray.filter(key => key.name.toLowerCase().includes(value.toLowerCase()));
-		console.log(this.userService.usersArray);
-		console.log(this.userService.usersArrayCopy);
-
 		if(this.userService.usersArrayCopy.length == 1){
 			this.findName = this.userService.usersArrayCopy[0];
 		}
 		else {
 			return this.findName = undefined;
-		};
+		};		
 	};
 
 	public findUser() {				
@@ -150,10 +147,26 @@ export class RegAppComponent implements OnInit {
 	};
 
 	//  cange color active User field
-	public changeColor(i) {
-		if(this.userService.usersArray[i].active == false) {
-			this.userService.usersArray[i].active = true;
+	public changeColor(item) {
+		if(this.userService.usersArray[item].active == false) {
+			this.userService.usersArray[item].active = true;
 		}
-		else this.userService.usersArray[i].active = false;
+		else {
+			this.userService.usersArray[item].active = false;
+		};
 	};
+
+	//  cange color active User field
+	// public changeColor(value) {
+	// 	this.userService.usersArray.forEach(item => {
+	// 		if(item.name == value && item.active == false) {
+	// 			item.active = true;
+	// 		}
+	// 		else if(item.name == value && item.active == true) {
+	// 			item.active = false;
+	// 		};
+	// 		console.log(item);	
+	// 	});
+	// };
+	
 };
