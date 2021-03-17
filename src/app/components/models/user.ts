@@ -4,5 +4,5 @@ export class UserCard {
 		public email?: string,
 		public active?: boolean
 	) { };
-};
+}
 

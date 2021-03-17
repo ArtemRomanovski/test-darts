@@ -26,4 +26,4 @@ import { from } from "rxjs";
 	providers: [RegAppComponent],
 	bootstrap: [AppComponent]
 })
-export class AppModule { };
+export class AppModule { }
