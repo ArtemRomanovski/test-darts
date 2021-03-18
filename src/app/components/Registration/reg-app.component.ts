@@ -1,7 +1,5 @@
-import { isNgTemplate } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { concat, from } from "rxjs";
 import { UserCard } from "../models/user";
 import { UsersService } from "../services/users.service";
 
@@ -14,25 +12,25 @@ import { UsersService } from "../services/users.service";
 
 export class RegAppComponent implements OnInit {
 	public regExpEmail = [/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.)+([a-zA-Z0-9-]+)*$/];
-	public showErr_selectPlayers: boolean = false;
-	public showErr_chooseGame: boolean = false;
-	public toggleGamePage: boolean = false;
-	public choice_501: boolean = false;
-	public choice_301: boolean = false;
-	public showErr: boolean = false;
-	public toggle: boolean = true;
-	public maxLength: number = 20;
-	public disabled: string = "";
-	public searchIcon = faSearch
-	public name: string = "";
+	public showErr_selectPlayers = false;
+	public showErr_chooseGame = false;
+	public toggleGamePage = false;
+	public choice_501 = false;
+	public choice_301 = false;
+	public showErr = false;
+	public toggle = true;
+	public maxLength = 20;
+	public disabled = "";
+	public searchIcon = faSearch;
+	public name = "";
 	public email: string;
 	public findName;
 
-	constructor(public userService: UsersService) {};
+	constructor(public userService: UsersService) {}
 
-	ngOnInit() {
+	public ngOnInit() {
 		console.log(this.userService.usersArray);
-	};
+	}
 
 	// add New User
 	public addUser(nickName, email) {
@@ -42,30 +40,30 @@ export class RegAppComponent implements OnInit {
 			active: false
 		};
 		// check valid
-		if ((nickName.valid === true && email.valid === true)) {
+		if (nickName.valid === true && email.valid === true) {
 			newUser.name = nickName.value;
 			newUser.email = email.value;
 			this.userService.addUser(newUser);
 			this.toggle = !this.toggle;
-		};
+		}
 		this.search("");
-	};
+	}
 
 	public remove(name: string) {
 		this.userService.removeUser(name);
-	};
+	}
 
 	// change registr page
 	public toggleCards() {
 		this.toggle = !this.toggle;
 		this.showErr = false;
-	};
+	}
 
 	public togglePage() {
 		this.toggleGamePage = !this.toggleGamePage;
-	};
+	}
 
-	public playerChoice(i: number, findUser: object) {
+	public playerChoice(i: number, findUser) {
 		if(this.userService.choiceUsersToGame.length !== 0) {
 			if (this.userService.choiceUsersToGame.length < 3) {
 				if(findUser !== undefined) {
@@ -80,39 +78,40 @@ export class RegAppComponent implements OnInit {
 					this.userService.choiceUsersToGame.push(findUser);
 				}
 				else this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
-			};			}
-		else {			
+			}
+		}
+		else {
 			if(findUser !== undefined) {
-				this.userService.choiceUsersToGame.push(findUser);				
+				this.userService.choiceUsersToGame.push(findUser);
 			}
 			else {
-				this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);	
-			};
-		};
-	};
+				this.userService.choiceUsersToGame.push(this.userService.usersArray[i]);
+			}
+		}
+	}
 
 	public Game_501() {
 		this.choice_501 = true;
 		this.choice_301 = false;
-		this.showErr_chooseGame = false;		
-	};
+		this.showErr_chooseGame = false;
+	}
 
 	public Game_301() {
 		this.choice_301 = true;
 		this.choice_501 = false;
-	};
+	}
 
 	// Checking the selection of all players and the type of game 
 	public checkStart() {
-		if ((this.userService.choiceUsersToGame.length === 3) && (this.choice_501 === true)) {
+		if (this.userService.choiceUsersToGame.length === 3 && this.choice_501 === true) {
 			this.togglePage();
 			this.showErr_selectPlayers = false;
 			this.showErr_chooseGame = false;
 		}
-		if((this.userService.choiceUsersToGame.length < 3)) {
+		if(this.userService.choiceUsersToGame.length < 3) {
 			this.showErr_selectPlayers = true;
 		}
-		if((this.userService.choiceUsersToGame.length === 3)) {
+		if(this.userService.choiceUsersToGame.length === 3) {
 			this.showErr_selectPlayers = false;
 		}
 		if(this.choice_501 === false) {
@@ -120,8 +119,8 @@ export class RegAppComponent implements OnInit {
 		}
 		if(this.choice_501 === true) {
 			this.showErr_chooseGame = false;
-		};
-	};
+		}
+	}
 
 	public search(value) {
 		this.userService.usersArrayCopy = this.userService.usersArray.filter(key => key.name.toLowerCase().includes(value.toLowerCase()));
@@ -130,21 +129,21 @@ export class RegAppComponent implements OnInit {
 		}
 		else {
 			return this.findName = undefined;
-		};		
-	};
+		}
+	}
 
-	public findUser() {				
+	public findUser() {
 		if(this.findName == undefined) {
 			this.showErr = true;
-		}	
+		}
 		if(this.findName !== undefined){
-			var i = undefined;
-			var findUser = this.findName;
-			findUser.active = true;	
-			this.playerChoice(i, findUser);	
+			const i = undefined;
+			const findUser = this.findName;
+			findUser.active = true;
+			this.playerChoice(i, findUser);
 			this.showErr = false;
-		};
-	};
+		}
+	}
 
 	//  cange color active User field
 	public changeColor(item) {
@@ -153,8 +152,8 @@ export class RegAppComponent implements OnInit {
 		}
 		else {
 			this.userService.usersArray[item].active = false;
-		};
-	};
+		}
+	}
 
 	//  cange color active User field
 	// public changeColor(value) {
@@ -168,5 +167,5 @@ export class RegAppComponent implements OnInit {
 	// 		console.log(item);	
 	// 	});
 	// };
-	
-};
+
+}

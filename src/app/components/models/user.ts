@@ -3,6 +3,5 @@ export class UserCard {
 		public name: string,
 		public email?: string,
 		public active?: boolean
-	) { };
+	) { }
 }
-

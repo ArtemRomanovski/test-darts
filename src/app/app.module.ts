@@ -7,7 +7,6 @@ import { RegAppComponent } from "./components/Registration/reg-app.component";
 import { LogoComponent } from "./components/logo/logo.component";
 import { GamePageComponent } from "./components/game-page/game-page.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { from } from "rxjs";
 
 @NgModule({
 	declarations: [

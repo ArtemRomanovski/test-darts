@@ -5,8 +5,8 @@ import { UserCard } from "../models/user";
 	providedIn: "root"
 })
 export class UsersService {
-	@Input() UserCard;
-	@Input() PointCard;
+	@Input() public UserCard;
+	@Input() public PointCard;
 
 	public usersGameArray = [];	// Current player points 
 	public usersGameArrayCopy = [];
@@ -48,17 +48,17 @@ export class UsersService {
 			{"dart": 0, "double": false},
 			{"dart": 0, "double": false},
 			{"dart": 0, "double": false},
-		],	
+		],
 		[
 			{"dart": 0, "double": false},
 			{"dart": 0, "double": false},
 			{"dart": 0, "double": false},
-		],	
+		],
 		[
 			{"dart": 0, "double": false},
 			{"dart": 0, "double": false},
 			{"dart": 0, "double": false},
-		],	
+		],
 	];
 
 	// Temporary array for multiplication
@@ -67,17 +67,17 @@ export class UsersService {
 			{"dart": undefined, "double": false, "active_1": true, "active_2": false, "active_3": false},
 			{"dart": undefined, "double": false, "active_1": true, "active_2": false, "active_3": false},
 			{"dart": undefined, "double": false, "active_1": true, "active_2": false, "active_3": false}
-		],	
+		],
 		[
 			{"dart": undefined, "double": false, "active_1": true, "active_2": false, "active_3": false},
 			{"dart": undefined, "double": false, "active_1": true, "active_2": false, "active_3": false},
 			{"dart": undefined, "double": false, "active_1": true, "active_2": false, "active_3": false}
-		],	
+		],
 		[
 			{"dart": undefined, "double": false, "active_1": true, "active_2": false, "active_3": false},
 			{"dart": undefined, "double": false, "active_1": true, "active_2": false, "active_3": false},
 			{"dart": undefined, "double": false, "active_1": true, "active_2": false, "active_3": false}
-		],	
+		],
 	];
 
 	public gameOver = {
@@ -88,23 +88,21 @@ export class UsersService {
 		"additionalRounds": false
 	};
 
-	constructor() { }
-
 	// Add New User
 	public addUser(newUser: UserCard) {
 		this.usersArray.push(newUser);
-	};
+	}
 
 	// Remove User
 	public removeUser(name: string) {
 		this.usersArray = this.usersArray.filter(user => user.name !== name);
 		this.usersArrayCopy = this.usersArrayCopy.filter(user => user.name !== name);
-	};
+	}
 
 	public currantHitPointsFn(inputValue, idxUser, idxDart, factor) {
-		let result = inputValue*factor;
+		const result = inputValue*factor;
 		if(inputValue !== undefined) {
-			this.userDartValue[idxUser][idxDart].dart = result; 
+			this.userDartValue[idxUser][idxDart].dart = result;
 			// double check to win
 			if(factor !== 1){
 				this.userDartValue[idxUser][idxDart].double = true;
@@ -113,23 +111,23 @@ export class UsersService {
 				this.userDartValue[idxUser][idxDart].double = false;
 			}
 			console.log(`Points - ${inputValue}`, `\nGamer - ${idxUser}`,`\nIndex(dart number) - ${idxDart}`, `\nFactor - ${factor}`, `\nResult - ${result}`,`\n`,this.userDartValue[idxUser]);
-		};
+		}
 		if(factor == 1){
 			this.userDartValue[idxUser][idxDart].active_1 = true;
 			this.userDartValue[idxUser][idxDart].active_2 = false;
 			this.userDartValue[idxUser][idxDart].active_3 = false;
-		};
+		}
 		if(factor == 2){
 			this.userDartValue[idxUser][idxDart].active_1 = false;
 			this.userDartValue[idxUser][idxDart].active_2 = true;
 			this.userDartValue[idxUser][idxDart].active_3 = false;
-		};
+		}
 		if(factor == 3){
 			this.userDartValue[idxUser][idxDart].active_1 = false;
 			this.userDartValue[idxUser][idxDart].active_2 = false;
 			this.userDartValue[idxUser][idxDart].active_3 = true;
-		};			
-	};
+		}
+	}
 
 	// reset `gameOver` value
 	public resetGameOver() {
@@ -137,7 +135,7 @@ export class UsersService {
 		this.gameOver.victory_30_Steps = false;
 		this.gameOver.draw_20 = false;
 		this.gameOver.draw_30 = false;
-	};
+	}
 
 	// addition of points of three darts
 	public sumPoits() {
@@ -146,14 +144,14 @@ export class UsersService {
 			let dbl = false;
 			sum = 0;
 			for(let j=0; j<3; j++) {
-				sum += i[j].dart;	
-				if(i[j].double == true){					
+				sum += i[j].dart;
+				if(i[j].double == true){
 					dbl = true;
-				};
-			};
+				}
+			}
 			this.currantTotalPointsArray[idx] = { "totalPoint": sum, "double": dbl };
 		});
-	};
+	}
 
 	public push() {
 		this.currantPointsArray.forEach((i, idx) => {
@@ -165,10 +163,10 @@ export class UsersService {
 				else {
 					i[t].dart = this.userDartValue[idx][t].dart;
 					i[t].double = this.userDartValue[idx][t].double;
-				};
-			};
-		});		
-	};
+				}
+			}
+		});
+	}
 
 	// Reset color Btn and double value
 	public ResetActiveBtn() {
@@ -178,11 +176,7 @@ export class UsersService {
 				i[j].active_2 = false;
 				i[j].active_3 = false;
 				i[j].double = false;
-			};
+			}
 		});
-	};
-};
-
-
-
-
+	}
+}
